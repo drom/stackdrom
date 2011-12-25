@@ -1,1 +1,12 @@
 isa tools
+
+
+LLVM Colorer scheme
+
+<>\Far2\Plugins\colorer\base\hrc\proto.hrc
+
+<prototype name="llvm" group="rare" description="LLVM IR">
+  <location link="llvm.hrc"/>
+  <filename weight='3'>/\.ll$/i</filename>
+</prototype>
+
