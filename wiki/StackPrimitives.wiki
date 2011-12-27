@@ -10,7 +10,7 @@ in order of importance:
 || BRANCH (label)  || BRANCH (label)                ||
 || ?BRANCH (label) || BRANCH $0 (label), PS↓        ||
 || NEXT (label)    || BRANCH %0 (label)             ||
-|| 12345 || $-1 = 12345, PS↑       ||
+|| LIT (number)    || $-1 = 12345, PS↑       ||
 || +     || $0 = add $1, $0; PS↓ ||
 || -     || $0 = sub $1, $0; PS↓ ||
 || ∗     || $0 = mul $1, $0; PS↓ ||
