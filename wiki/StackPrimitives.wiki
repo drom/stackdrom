@@ -5,13 +5,33 @@
 in order of importance:
 
 {{{
-call ret br
-add sub mul
-and or xor shl lshr ashr
-load store
-drop dup over
+call
+ret
+br
+
 <literal>
-push pop
+
+add
+sub
+mul
+
+and
+or
+xor
+shl
+lshr
+ashr
+
+load
+store
+
+drop
+dup
+over
+
+push
+pop
+
 }}}
 
 = extra =
