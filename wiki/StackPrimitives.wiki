@@ -18,7 +18,7 @@ in order of importance:
 || OR    || $0 = or  $1, $0; PS↓ ||
 || XOR   || $0 = xor $1, $0; PS↓ ||
 || 2∗    || $0 = shl  $0, 1      || 
-|| ???   || $0 = lshr $0, 1      ||
+|| u2/   || $0 = lshr $0, 1      ||
 || 2/    || $0 = ashr $0, 1      ||
 || @     || $0 = load $0         ||
 || !     || store $0, $1; PS↓↓   ||
