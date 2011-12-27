@@ -4,6 +4,7 @@
 
 in order of importance:
 
+{{{
 call return br
 add sub mul
 and or xor shl lshr ashr
@@ -11,5 +12,6 @@ load store
 drop dup over
 <literal>
 push pop
+}}}
 
 = extra =
