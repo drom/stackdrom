@@ -4,34 +4,30 @@
 
 in order of importance:
 
-{{{
+
 call
 ret
 br
 
-<literal>
 
-add
-sub
-mul
+|| *Forth* || *Description*      ||
+|| *lit* || $-1 = 12345          ||
+|| +     || $0 = add $1, $0; PS↓ ||
+|| -     || $0 = sub $1, $0; PS↓ ||
+|| ∗     || $0 = mul $1, $0; PS↓ ||
+|| and   || $0 = and $1, $0; PS↓ ||
+|| or    || $0 = or  $1, $0; PS↓ ||
+|| xor   || $0 = xor $1, $0; PS↓ ||
+|| 2∗    || $0 = shl  $0, 1      || 
+|| ???   || $0 = lshr $0, 1      ||
+|| 2/    || $0 = ashr $0, 1      ||
+|| @     || $0 = load $0         ||
+|| !     || store $0, $1; PS↓↓   ||
+|| drop  || PS↓                  ||
+|| dup   || $-1 = $0, PS↑        ||
+|| over  || $-1 = $1, PS↑        ||
+|| >r    || %-1 = $0, PS↓, RS↑   ||
+|| r>    || $-1 = %0, PS↑, RS↓   ||
 
-and
-or
-xor
-shl
-lshr
-ashr
-
-load
-store
-
-drop
-dup
-over
-
-push
-pop
-
-}}}
 
 = extra =
