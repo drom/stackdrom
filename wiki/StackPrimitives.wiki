@@ -34,5 +34,9 @@ in order of importance:
 || >R    || %-1 = $0, PS↓, RS↑   ||
 || R>    || $-1 = %0, PS↑, RS↓   ||
 
+== Combinations easy to do in HW ==
 
-= extra =
+
+|| *Forth*         || *Description*                 ||
+|| SWAP -          || $0 = sub $0, $1; PS↓          ||
+|| R> DROP         || RS↓                           ||
