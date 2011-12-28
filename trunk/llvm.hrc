@@ -19,6 +19,7 @@
     <region name="llvmMnemonics" parent="Keyword"/>
     <region name="llvmLabel"     parent="Label"/>
     <region name="llvmSymb"      parent="Symbol"/>
+    <region name="llvmNumber"    parent="Number"/>
     <region name="llvmNumBin"    parent="NumberBin"/>
     <region name="llvmNumHex"    parent="NumberHex"/>
     <region name="llvmNumDec"    parent="NumberDec"/>
@@ -34,9 +35,18 @@
       <regexp match="/\b([0-9]+[dD]?)\b/" region0="llvmNumDec"/>
       <!-- numbers - bin -->
       <regexp match="/\b([01]+[bB])\b/" region0="llvmNumBin"/>
+      <!-- numbers - constants -->
+      <keywords ignorecase="yes" region="llvmNumber">
+        <word name="undef"/>
+        <word name="true"/>
+        <word name="false"/>
+        <word name="null"/>
+      </keywords>
       <!-- keywords -->
       <keywords ignorecase="yes" region="llvmString">
         <word name="i1"/>
+        <word name="i2"/>
+        <word name="i3"/>
         <word name="i4"/>
         <word name="i8"/>
         <word name="i16"/>
@@ -45,7 +55,51 @@
       </keywords>
 
       <keywords ignorecase="yes" region="llvmMnemonics">
-        <word name="add"/>
+        <word name="zeroinitializer"/>
+        <word name="signext"/>
+        <word name="type"/>
+        <word name="external"/>
+        <word name="constant"/>
+        <word name="target"/>
+        <word name="alias"/>
+        <word name="align"/>
+        <word name="noalias"/>
+        <word name="nounwind"/>
+        <word name="monotonic"/>
+        <word name="weak"/>
+        <word name="global"/>
+        <word name="declare"/>
+        <word name="metadata"/>
+        <word name="nocapture"/>
+        <word name="inbounds"/>
+        <word name="xchg"/>
+        <word name="uwtable"/>
+        <word name="ssp"/>
+        <word name="byval"/>
+
+        <word name="eq"/>
+        <word name="ne"/>
+        <word name="sgt"/>
+        <word name="sge"/>
+        <word name="slt"/>
+        <word name="sle"/>
+
+        <word name="false"/>
+        <word name="oeq"/>
+        <word name="ogt"/>
+        <word name="oge"/>
+        <word name="olt"/>
+        <word name="ole"/>
+        <word name="one"/>
+        <word name="ord"/>
+        <word name="ueq"/>
+        <word name="ugt"/>
+        <word name="uge"/>
+        <word name="ult"/>
+        <word name="ule"/>
+        <word name="une"/>
+        <word name="uno"/>
+        <word name="true"/>
 
 <!--Terminator Instructions-->
         <word name="ret"/>
