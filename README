@@ -1,7 +1,13 @@
-isa tools
+toolkit
 
+Colorer schemas
+---------------
 
-LLVM Colorer scheme
+llvm
+json
+verilog
+dot
+assembler
 
 <>\Far2\Plugins\colorer\base\hrc\proto.hrc
 
