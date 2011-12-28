@@ -15,4 +15,8 @@ assembler
   <location link="llvm.hrc"/>
   <filename weight='3'>/\.ll$/i</filename>
 </prototype>
+<prototype name="json" group="rare" description="JSON">
+  <location link="json.hrc"/>
+  <filename weight='3'>/\.json$/i</filename>
+</prototype>
 
