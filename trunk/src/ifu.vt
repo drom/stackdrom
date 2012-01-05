@@ -1,0 +1,344 @@
+//; use lib "../lib";
+//; use VeriSub;
+//; use POSIX;
+//; use JSON;
+//;
+//; {
+//; my $input = $ARGV[0]; # input file name
+//; open (INP, "<$input") or die "Could not open file - input file: $!";
+//; my $my_config = decode_json join " ", <INP>;
+//; close INP;
+
+//; my $base    = $my_config->{width}->{base};
+//; my $fetch   = $my_config->{width}->{fetch};
+//; my $ir      = $my_config->{width}->{ir};
+//; my $maxlen  = VeriSub::maxlen ($my_config->{isa}, $my_config->{parcels}, 0);
+//; my $gcdlen  = VeriSub::gcdlen ($my_config->{isa}, $my_config->{parcels}, 0);
+
+//; die 'Error: instruction can not be longer than commulitive instruction register width.'
+//;     unless (($ir * $fetch) >= $maxlen);
+
+//; my $slots   = $ir * $fetch / $gcdlen;
+
+//; my $ir_log  = log($ir)/log(2);
+
+//; my $slots_slice_0 = VeriSub::logic_slice_0 (log($slots)/log(2));
+
+//; my $base_dim   = VeriSub::logic_dim ($base);
+//; my $ir_dim     = VeriSub::logic_dim ($ir);
+//; my $ir_log_dim = VeriSub::logic_dim ($ir_log);
+//; my $liw_dim    = VeriSub::logic_dim ($maxlen);
+//; my $len_dim    = VeriSub::logic_dim (ceil(log($maxlen / $gcdlen + 1) / log(2)));
+//; my $fetch_dim  = VeriSub::logic_dim ($fetch);
+//; my $slots_dim  = VeriSub::logic_dim (log($slots)/log(2));
+//; my $wa_dim     = VeriSub::logic_dim ($my_config->{width}->{base} - (log($fetch / $gcdlen)/log(2)));
+
+/**********************************************************************************************/
+module ifu_len (
+	input  logic $liw_dim ir,
+	output logic $len_dim len
+);
+//; { my $body = VeriSub::ild_extract ($my_config->{isa}, $my_config->{parcels}, "", 0, "ir", $gcdlen);
+assign len = $body;
+//; }
+endmodule
+
+//; if ($slots > 1) {
+/**********************************************************************************************/
+module ifu_irmux (
+//; for my $i (0..($slots - 1)) {
+	input  logic $liw_dim in\_$i,
+//; }
+	input  logic $slots_dim sel,
+	output logic $liw_dim ou
+);
+
+always_comb case (sel$slots_slice_0)
+//; for my $i (0..($slots - 1)) {
+//;   my $ii = sprintf "%4d", $i;
+$ii : ou = in\_$i;
+//; }
+endcase
+
+endmodule
+//; }
+
+
+/**********************************************************************************************/
+module ifu_ir (
+	input  logic clk,
+	input  logic $fetch_dim in,
+	input  logic $ir_dim en,
+//; if ($slots > 1) {
+	input  logic $slots_dim sel,
+//; }
+	output logic $liw_dim ou
+);
+
+//; for my $i (0..($ir - 1)) {
+logic $fetch_dim ir$i;
+//; }
+
+//; for my $i (0..($ir - 1)) {
+always_ff @ (posedge clk) if (en[$i]) ir$i <= in;
+//; }
+
+//; {
+//;   my $gir_dim = VeriSub::logic_dim ($fetch * $ir * 2);
+logic $gir_dim ir;
+//;   my @irs;
+//;   for (0..1) {
+//;     for my $i (0..($ir - 1)) {
+//;       push @irs, "ir$i";
+//;     }
+//;   }
+//;   my $irs = join ', ', reverse(@irs);
+
+assign ir = {$irs};
+
+//; if ($slots > 1) {
+ifu_irmux u_ifu_irmux (
+//; for my $i (0..($slots - 1)) {
+//;   my $tmp = VeriSub::logic_slice(($i * $gcdlen), $maxlen);
+	.in\_$i    (ir $tmp),
+//;   }
+	.sel       (sel),
+	.ou        (ou)
+);
+//; } else {
+assign ou = ir0;
+//; }
+//; }
+
+endmodule
+
+
+/**********************************************************************************************/
+module ifu_pc0 (
+	input  logic clk, reset_n,
+	output logic $wa_dim pc0,
+	output logic req,
+	input  logic ack
+);
+
+logic $wa_dim nxt_pc0;
+logic en_pc0;
+
+always_ff @ (posedge clk or negedge reset_n)
+	if (~reset_n)    pc0 <= 0;
+	else if (en_pc0) pc0 <= nxt_pc0;
+
+assign nxt_pc0 = pc0 + 1; // ToDo: brunch condition
+assign en_pc0  = ack;
+assign req     = 1;
+
+endmodule
+
+
+//; if ($ir > 1) {
+/**********************************************************************************************/
+module ifu_pc1 #(
+	parameter VW = $ir,
+	parameter PW = $ir_log
+)(
+	input  logic          clk, reset_n,
+	input  logic          r_req,
+	input  logic [VW-1:0] v,
+	output logic          r_ack,
+	output logic [VW-1:0] en,
+	output logic [PW-1:0] pc1
+);
+
+logic [PW-1:0] nxt_pc1;
+logic en_pc, vsel;
+logic [VW-1:0] tmp_set;
+
+always_ff @ (posedge clk or negedge reset_n)
+	if (~reset_n)   pc1 <= 0;
+	else if (en_pc) pc1 <= nxt_pc1;
+
+always_comb case(pc1)
+//;   for my $i (0..($ir - 1)) {
+//;     my $sel = sprintf "%4d", $i;
+$sel : vsel = v[$i];
+//;   }
+endcase
+
+always_comb case(pc1)
+//;   for my $i (0..($ir - 1)) {
+//;     my $sel = sprintf "%4d", $i;
+//;     my $set = 2**$i;
+$sel : tmp_set = $set;
+//;   }
+endcase
+
+
+assign en_pc = ~vsel & r_req;
+assign en = tmp_set & {VW{en_pc}};
+assign nxt_pc1 = pc1 + 1;
+assign r_ack = en_pc;
+
+endmodule
+//; }
+
+
+//; if ($slots > 1) {
+/**********************************************************************************************/
+module ifu_pc2 (
+	input  logic clk, reset_n,
+	input  logic $len_dim len,
+	output logic $base_dim pc2, nxt_pc2,
+	input  logic en_pc2
+);
+
+always_ff @ (posedge clk or negedge reset_n)
+	if (~reset_n)    pc2 <= 0;
+	else if (en_pc2) pc2 <= nxt_pc2;
+
+assign nxt_pc2 = pc2 + len; // ToDo: brunch condition
+
+endmodule
+//; }
+
+/**********************************************************************************************/
+module ifu_vir #(
+	parameter self = 0
+)(
+	input  logic clk, reset_n,
+	input  logic $ir_log_dim pc1,
+	input  logic $base_dim pc2, nxt_pc2,
+	input  logic en,
+	output logic vir
+);
+
+logic vir, set_ir, rst_ir; // instruction register valid bit
+
+always_ff @ (posedge clk or negedge reset_n)
+	if (~reset_n) vir <= 0;
+	else if (set_ir) vir <= 1;
+		else if (rst_ir) vir <= 0;
+
+assign set_ir = (pc1 == self) & en;
+assign rst_ir = (pc2 == self) & (nxt_pc2 != self);
+
+endmodule
+
+
+/**********************************************************************************************/
+module ifu (
+	input clk, reset_n,
+
+	output $wa_dim i_neoi_a_dat,
+	output i_neoi_a_req,
+	input  i_neoi_a_ack,
+
+	input  $fetch_dim i_neoi_r_dat,
+	input  i_neoi_r_req,
+	output i_neoi_r_ack,
+
+	output $liw_dim i_liw_dat,
+	output i_liw_req,
+	input  i_liw_ack
+);
+
+//; {
+//;   my $pc2s    = VeriSub::logic_slice ((log($fetch / $gcdlen)/log(2)), $ir_log);
+logic $ir_log_dim pc1;
+logic $base_dim pc2, nxt_pc2;
+
+logic en_pc2;
+//;   for my $i (0..($ir - 1)) {
+
+logic v_ir$i;
+logic en_ir$i;
+
+ifu_vir #(
+	.self      ($i))
+u_ifu_vir$i (
+	.clk       (clk),
+	.reset_n   (reset_n),
+	.pc1       (pc1),
+	.pc2       (pc2),
+	.nxt_pc2   (nxt_pc2),
+	.en        (en_pc2),
+	.vir       (v_ir$i));
+
+//; }}
+
+//; {
+logic $ir_dim en_ir;
+logic $liw_dim ir_sel;
+logic $len_dim len;
+//;   my $w = VeriSub::logic_slice_0 (log($slots)/log(2));
+//; }
+
+
+//; {
+//; my $w = log($slots)/log(2);
+//; if ($my_config->{width}->{ir} > 2) {
+//;   $w = ($w + log($my_config->{width}->{ir})/log(2) - 1) . ':' . $w;
+//; }
+//; if ($ir > 1) {
+always_comb case (nxt_pc2[$w])
+//;   for my $i (0..($my_config->{width}->{ir} - 1)) {
+//;     my $tmp = sprintf "%4d", $i;
+$tmp : en_pc2 = v_ir$i;
+//;   }
+endcase
+//; } else {
+assign en_pc2 = v_ir0;
+//; }
+//; }
+
+ifu_len u_ifu_len (
+	.ir        (ir_sel),
+	.len       (len));
+
+ifu_ir u_ifu_ir (
+	.clk       (clk),
+	.in        (i_neoi_r_dat),
+	.en        (en_ir),
+//; if ($slots > 1) {
+	.sel       (pc2),
+//; }
+	.ou        (ir_sel));
+
+ifu_pc0 u_ifu_pc0 (
+	.clk       (clk),
+	.reset_n   (reset_n),
+	.pc0       (i_neoi_a_dat),
+	.req       (i_neoi_a_req),
+	.ack       (i_neoi_a_ack));
+
+//; if ($ir > 1) {
+//;   my @v;
+//;   for my $i (0..($ir - 1)) {
+//;     push @v,  "v_ir$i";
+//;   }
+//;   my $v  = join ', ', reverse(@v);
+ifu_pc1 u_ifu_pc1 (
+	.clk       (clk),
+	.reset_n   (reset_n),
+	.r_req     (i_neoi_r_req),
+	.r_ack     (i_neoi_r_ack),
+	.v         ({$v}),
+	.en        (en_ir),
+	.pc1       (pc1));
+//; } else {
+assign en_ir = i_neoi_r_req;
+//; }
+
+//; if ($slots > 1) {
+ifu_pc2 u_ifu_pc2 (
+	.clk       (clk),
+	.reset_n   (reset_n),
+	.len       (len),
+	.pc2       (pc2),
+	.nxt_pc2   (nxt_pc2),
+	.en_pc2    (en_pc2));
+//; }
+
+assign i_liw_dat = ir_sel;
+
+endmodule
+//; }

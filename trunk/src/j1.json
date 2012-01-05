@@ -1,0 +1,40 @@
+/* configuration file */
+{
+"width":{
+	"base"  : 16, // [bit] 2^n
+	"fetch" : 16, // [bit] 2^n
+	"ir"    : 1,  // [fetch words] 2^n
+	"liw"   : 6
+},
+// instruction format tree
+"isa":
+{"15":[
+	{"14":[
+		{"13":[
+			"jump",
+			"?jump"
+		]},
+		{"13":[
+			"call",
+			"alu"
+		]}
+	]},
+	"literal"
+]},
+// all instuction formats
+"parcels":{
+	"literal" : [16, {"value"  : [14,0]}],
+	"jump"    : [16, {"target" : [12,0]}],
+	"?jump"   : [16, {"target" : [12,0]}],
+	"call"    : [16, {"target" : [12,0]}],
+	"alu"     : [16,
+		{"r->pc"  : 12},
+		{"alu"    : [11,8]},
+		{"t->n"   : 7},
+		{"t->r"   : 6},
+		{"n->[t]" : 5},
+		{"rstack" : [3,2]},
+		{"dstack" : [1,0]}
+	]
+}
+}
