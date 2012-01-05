@@ -29,12 +29,30 @@
 	"call"    : [16, {"target" : [12,0]}],
 	"alu"     : [16,
 		{"r->pc"  : 12},
-		{"alu"    : [11,8]},
+		{"alu"    : [[11,8], "t", "n", "t+n", "t&n", "t|n", "t^n", "~t", "n==t", "n<t", "n>>t", "t-1", "r", "[t]", "n<<t", "depth", "nu<t"]},
 		{"t->n"   : 7},
 		{"t->r"   : 6},
 		{"n->[t]" : 5},
-		{"rstack" : [3,2]},
-		{"dstack" : [1,0]}
+		{"rstack" : [[3,2], "0", "+1", "??", "-1"]},
+		{"dstack" : [[1,0], "0", "+1", "??", "-1"]}
 	]
+}
+"macros":{
+	"dup"    : {"alu": {            "t->n":1,                     "dstack":"+1"                           }},
+	"over"   : {"alu": {"alu":"n",  "t->n":1,                     "dstack":"+1"                           }},
+	"invert" : {"alu": {"alu":"~t"                                                                        }},
+	"+"      : {"alu": {"alu":"t+n",                              "dstack":"-1"                           }},
+	"and"    : {"alu": {"alu":"t&n",                              "dstack":"-1"                           }},
+	"or"     : {"alu": {"alu":"t|n",                              "dstack":"-1"                           }},
+	"swap"   : {"alu": {"alu":"n",  "t->n":1                                                              }},
+	"nip"    : {"alu": {                                          "dstack":"-1"                           }},
+	"drop"   : {"alu": {"alu":"n",                                "dstack":"-1"                           }},
+	";"      : {"alu": {                     "r->pc":1,                          "rstack":"-1"            }},
+	">r"     : {"alu": {"alu":"n",                      "t->r":1, "dstack":"-1", "rstack":"+1"            }},
+	"r>"     : {"alu": {"alu":"r",  "t->n":1,           "t->r":1, "dstack":"+1", "rstack":"-1"            }},
+	"r@"     : {"alu": {"alu":"r",  "t->n":1,           "t->r":1, "dstack":"+1"                           }},
+	"@"      : {"alu": {"alu":"[t]"                                                                       }},
+	"!"      : {"alu": {"alu":"n",                                "dstack":"-1",               "n->[t]":1 }},
+	"drop ;" : {"alu": {"alu":"n",           "r->pc":1,           "dstack":"-1", "rstack":"-1"            }}
 }
 }
