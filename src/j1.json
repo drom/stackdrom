@@ -36,7 +36,7 @@
 		{"rstack" : [[3,2], "0", "+1", "??", "-1"]},
 		{"dstack" : [[1,0], "0", "+1", "??", "-1"]}
 	]
-}
+},
 // equivalent Forth sequences
 "macros":{
 	"dup"    : {"alu": {            "t->n":1,                     "dstack":"+1"                           }},
