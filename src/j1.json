@@ -1,12 +1,11 @@
-/* configuration file */
+// processor configuration file
 {
 "width":{
-	"base"  : 16, // [bit] 2^n
-	"fetch" : 16, // [bit] 2^n
-	"ir"    : 1,  // [fetch words] 2^n
-	"liw"   : 6
+	"base"  : 16, // [bit] 2^n. base word width of the processor (example: 16, 32)
+	"fetch" : 16, // [bit] 2^n. instruction fetch data bus width.
+	"ir"    : 1   // [fetch words] 2^n. number of words in the prefetch buffer.
 },
-// instruction format tree
+// instruction set binary tree
 "isa":
 {"15":[
 	{"14":[
@@ -21,8 +20,9 @@
 	]},
 	"literal"
 ]},
-// all instuction formats
+// instuction parcels. (formats)
 "parcels":{
+// "parcel name" : [<width [bit]>, {<fields>}]
 	"literal" : [16, {"value"  : [14,0]}],
 	"jump"    : [16, {"target" : [12,0]}],
 	"?jump"   : [16, {"target" : [12,0]}],
@@ -37,6 +37,7 @@
 		{"dstack" : [[1,0], "0", "+1", "??", "-1"]}
 	]
 }
+// equivalent Forth sequences
 "macros":{
 	"dup"    : {"alu": {            "t->n":1,                     "dstack":"+1"                           }},
 	"over"   : {"alu": {"alu":"n",  "t->n":1,                     "dstack":"+1"                           }},
