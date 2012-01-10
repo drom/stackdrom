@@ -72,3 +72,50 @@ h5:before {
   counter-increment: detail;
   content: counter(section) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";
 }
+
+table {
+	border-width: 0px;
+	border-spacing: 0px;
+	border-style: none;
+	border-collapse: separate;
+}
+table td.bit_num_f {
+	color: gray;
+	font-size: 10px;
+	width: 44px;
+	text-align: center;
+	border-style: none;
+}
+table td.valid_f {
+	border-width: 1px;
+	text-align: center;
+	padding: 1px;
+	border-style: inset;
+	background-color: #FFC;
+}
+table td.const_f {
+	border-width: 1px;
+	text-align: center;
+	padding: 1px;
+	border-style: inset;
+	background-color: #FEE;
+}
+table td.empty_f {
+	background-color: #EEE;
+}
+table td.valid_v_f {
+	border-width: 1px;
+	text-align: center;
+	border-style: inset;
+	border-color: green;
+	background-color: white;
+}
+table td.name_f {
+	font-weight: bold;
+}
+.v_text {
+     -moz-transform: rotate(-90deg);  /* FF3.5+ */
+       -o-transform: rotate(-90deg);  /* Opera 10.5 */
+  -webkit-transform: rotate(-90deg);  /* Saf3.1+, Chrome */
+  writing-mode: tb-rl;
+}

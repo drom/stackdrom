@@ -1,5 +1,5 @@
 // processor configuration file
-{
+var my = {
 "width":{
 	"base"  : 16, // [bit] 2^n. base word width of the processor (example: 16, 32)
 	"fetch" : 16, // [bit] 2^n. instruction fetch data bus width.
@@ -27,15 +27,15 @@
 	"jump"    : [16, {"target" : [12,0]}],
 	"?jump"   : [16, {"target" : [12,0]}],
 	"call"    : [16, {"target" : [12,0]}],
-	"alu"     : [16,
-		{"r->pc"  : 12},
-		{"alu"    : [[11,8], "t", "n", "t+n", "t&n", "t|n", "t^n", "~t", "n==t", "n<t", "n>>t", "t-1", "r", "[t]", "n<<t", "depth", "nu<t"]},
-		{"t->n"   : 7},
-		{"t->r"   : 6},
-		{"n->[t]" : 5},
-		{"rstack" : [[3,2], "0", "+1", "??", "-1"]},
-		{"dstack" : [[1,0], "0", "+1", "??", "-1"]}
-	]
+	"alu"     : [16, {
+		"r->pc"  : 12,
+		"alu"    : [11, 8, "t", "n", "t+n", "t&n", "t|n", "t^n", "~t", "n==t", "n<t", "n>>t", "t-1", "r", "[t]", "n<<t", "depth", "nu<t"],
+		"t->n"   : 7,
+		"t->r"   : 6,
+		"n->[t]" : 5,
+		"rstack" : [3, 2, "0", "+1", "??", "-1"],
+		"dstack" : [1, 0, "0", "+1", "??", "-1"]
+	}]
 },
 // equivalent Forth sequences
 "macros":{
