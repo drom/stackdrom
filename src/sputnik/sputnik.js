@@ -1,5 +1,5 @@
 /* configuration file */
-{
+var my = {
 "width":{
 	"base"  : 32, // [bit] 2^n
 	"fetch" : 64, // [bit] 2^n

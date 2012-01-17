@@ -1,4 +1,4 @@
-//; use lib "../lib";
+//; use lib "../../lib";
 //; use VeriSub;
 //; use POSIX;
 //; use JSON;
