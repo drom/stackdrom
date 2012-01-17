@@ -6,9 +6,13 @@ body {
   counter-reset: section;
 }
 
+h1 {
+  font-family: "Trade Winds", sans-serif, Arial, Verdana;
+}
+
 h2 {
   padding: 20px 0px;
-  font-family: Arial, Verdana, sans-serif;
+  font-family: "Fredericka the Great", sans-serif, Arial, Verdana;
   font-size: 28px;
   color: #0041c4;
   margin: 0px;
@@ -48,7 +52,7 @@ pre {
 
 h3 {
   counter-reset: composite;
-  font-family: Verdana, sans-serif;
+  font-family: "Ubuntu", Verdana, sans-serif;
 }
 
 h4 { counter-reset: detail }
@@ -74,6 +78,7 @@ h5:before {
 }
 
 table {
+	padding: 20px 0px;
 	border-width: 0px;
 	border-spacing: 0px;
 	border-style: none;
@@ -89,16 +94,16 @@ table td.bit_num_f {
 table td.valid_f {
 	border-width: 1px;
 	text-align: center;
-	padding: 1px;
+	padding: 0px;
 	border-style: inset;
-	background-color: #FFC;
+	background-color: #FFB;
 }
 table td.const_f {
 	border-width: 1px;
 	text-align: center;
-	padding: 1px;
-	border-style: inset;
-	background-color: #FEE;
+	padding: 0px;
+	border-style: outset;
+	background-color: #DFD;
 }
 table td.empty_f {
 	background-color: #EEE;
@@ -111,6 +116,7 @@ table td.valid_v_f {
 	background-color: white;
 }
 table td.name_f {
+	font-family: "Ubuntu", Verdana, sans-serif;
 	font-weight: bold;
 }
 .v_text {
