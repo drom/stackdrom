@@ -119,6 +119,36 @@ table td.name_f {
 	font-family: "Ubuntu", Verdana, sans-serif;
 	font-weight: bold;
 }
+table td.forth {
+	width: 300px;
+	font-family: "Droid Sans Mono", Courier New;
+	font-weight: bold;
+}
+table td.op_fld_f {
+	width: 44px;
+	font-weight: bold;
+	border-width: 1px;
+	text-align: center;
+	border-style: inset;
+	border-color: green;
+	background-color: #FFB;
+}
+table td.liw_fld_f {
+	width: 44px;
+	font-weight: bold;
+	border-width: 1px;
+	text-align: center;
+	border-style: inset;
+	border-color: green;
+	background-color: #EEF;
+}
+table td.liw_f {
+	border-width: 1px;
+	text-align: center;
+	border-style: inset;
+	border-color: green;
+	background-color: #EEF;
+}
 .v_text {
      -moz-transform: rotate(-90deg);  /* FF3.5+ */
        -o-transform: rotate(-90deg);  /* Opera 10.5 */
