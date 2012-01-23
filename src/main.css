@@ -6,6 +6,10 @@ body {
   counter-reset: section;
 }
 
+.content {
+  vertical-align: baseline;
+}
+
 h1 {
   font-family: "Trade Winds", sans-serif, Arial, Verdana;
 }
