@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+<style type="text/css">
+	body {
+		background-color: #444;
+		color: #FFF;
+		font-size: 2em;
+		font-family: 'Ropa Sans', cursive;
+		background: -webkit-radial-gradient(#707070, #101010);
+		background: -moz-radial-gradient(#707070, #101010);
+		background: -o-radial-gradient(#707070, #101010);
+		background: radial-gradient(#707070, #101010);
+		-webkit-font-smoothing: antialiased;
+	}
+	.step { width: 800px; }
+	.step:not(.active) { opacity: 0.3; }
+	.substep { opacity: 0.1; }
+	.substep.active { opacity: 1; }
+	.substep.previous { opacity: 0.7; }
+	img { margin-left: 450px; }
+	.no-support-message { display: none; }
+	.impress-not-supported .no-support-message {
+		display: block;
+		color: red;
+		font-size: 2em;
+	}
+	A:link    { text-decoration: none; color: green }
+	A:visited { text-decoration: none; color: yellow  }
+	A:active  { text-decoration: none; color: yellow  }
+	A:hover   { text-decoration: underline; color: red }
+</style>		
+</head>
+<body>
+<div id=impress>
+
+<div class=step>
+	<h1>StackDrom</h1>
+	Stack processor design toolkit<br>
+	<a href="http://goo.gl/u17KA">goo.gl/u17KA</a>
+</div>
+
+<div class=step data-y=400>
+<h2>What does it take to build new processor?</h2>
+<ul>
+<li class=substep>Documentation</li>
+<li class=substep>Compiler, utilities</li>
+<li class=substep>Processor model</li>
+<li class=substep>0 mismatches</li>
+</ul>
+</div>
+
+<div class=step data-y=800>
+<h2>What is StackDrom?</h2>
+<ul>
+<li class=substep>An effort to simplify the path: idea &rArr; design flow</li>
+<li class=substep>Single processor description format to be used everywere</li>
+<li class=substep>Initial set of tools using this format</li>
+<li class=substep>Couple of examples</li>
+</ul>
+</div>
+
+<div class=step data-y=-200 data-x=1200 data-rotate=-90 data-scale=4>
+<h2>Processor description format</h2>
+<ul>
+<li><a href="http://www.json.org/">JSON</a> based format</li>
+<li>ISA from scratch = NO binary compatibility</li>
+<li>multi-format instructions</li>
+<li>configurability / scalability</li>
+<li>1+ stack architecture</li>
+<li>FORTH instruction mnemonic</li>
+<li>examples:
+<a href="https://code.google.com/p/stackdrom/source/browse/trunk/src/j1/j1.json">J1</a>,
+<a href="https://code.google.com/p/stackdrom/source/browse/trunk/src/sputnik/sputnik.json">Sputnik</a>
+ &crarr; </a></li>
+</ul>
+</div>
+
+<div class=step data-y=-800 data-x=2600 data-rotate=-120 data-scale=4>
+<h2>Documentation</h2>
+<ul>
+<li><a href="https://code.google.com/p/stackdrom/source/browse/trunk/lib/StackDrom.js">StackDrom.js</a> = documentation automation script</li>
+<li>istruction set summary</li>
+<li>istruction tables</li>
+<li>cross-reference</li>
+<li>
+examples:
+<a href="https://stackdrom.googlecode.com/svn/trunk/src/j1/j1.html">J1</a>,
+<a href="https://stackdrom.googlecode.com/svn/trunk/src/sputnik/sputnik.html">Sputnik</a>
+&crarr;
+</li>
+</ul>
+</div>
+
+<div class=step data-y=-2200 data-x=3600 data-rotate=-150 data-scale=4>
+<h2>Processor model</h2>
+<ul>
+<li>Perl library for Verilog RTL generation</li>
+<li>set of main units and flexible interconnect</li>
+<ul>
+<li>instruction prefetch buffer</li>
+<li>instruction decoder</li>
+<li>1+ stack cache</li>
+<li>1+ ALU</li>
+<li>Load / Store + write buffer</li>
+</ul>
+
+</ul>
+</div>
+
+</div>
+
+</div>
+<script type="text/javascript" src="impress.sub.js"></script>
+</body>
+</html>
