@@ -1,0 +1,4 @@
++define+USE_SV
+
+tb.v
+../rtl/hornet.v
