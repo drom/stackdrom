@@ -1,0 +1,11 @@
+digraph g
+{
+
+  /* list of nodes */
+  "tomato";
+  "yellow";
+
+  /* list of edges */
+  "tomato" -> "yellow";
+  "yellow" -> "tomato";
+}
