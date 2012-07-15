@@ -149,10 +149,22 @@ sub straighten {
 	}
 }
 
+sub index_ports {
+	my $g0 = shift;
+	for my $v ($g0->vertices) {
+		if ($g0->in_degree($v) == 0) {
+			$g0->set_vertex_attribute($v, 'shape', 'invhouse');
+			$g0->set_vertex_attribute($v, 'type',  'inport');
+		} elsif ($g0->out_degree($v) == 0) {
+			$g0->set_vertex_attribute($v, 'shape', 'invhouse');
+			$g0->set_vertex_attribute($v, 'type',  'ouport');
+		}
+	}
+}
+
 sub decouple {
 	my $g0 = shift;
 
-	my $i = 0;
 	for my $v ($g0->vertices) {
 		my $color = $g0->get_vertex_attribute($v, 'color');
 		if (defined $color) {
@@ -161,23 +173,22 @@ sub decouple {
 				if (defined $c2 and ($c2 ne $color)) {
 					my $label = $g0->get_edge_attribute(@{$e}, 'headlabel');
 
-					$g0->add_edge($e->[0], "${i}_ou");
-					$g0->set_vertex_attribute("${i}_ou", 'shape', 'invhouse');
-					$g0->set_vertex_attribute("${i}_ou", 'type',  'ouport');
+					$g0->add_edge($e->[0], "${v}_ou");
+					$g0->set_vertex_attribute("${v}_ou", 'shape', 'invhouse');
+					$g0->set_vertex_attribute("${v}_ou", 'type',  'ouport');
 
-					$g0->set_edge_attribute("${i}_ou", "${i}_in", 'constraint', 'false');
-					$g0->set_edge_attribute("${i}_ou", "${i}_in", 'style', 'dotted');
+					$g0->set_edge_attribute("${v}_ou", "${v}_in", 'constraint', 'false');
+					$g0->set_edge_attribute("${v}_ou", "${v}_in", 'style', 'dotted');
 
-					$g0->set_edge_attribute("${i}_in", $e->[1], 'headlabel', $label);
+					$g0->set_edge_attribute("${v}_in", $e->[1], 'headlabel', $label);
 
-					$g0->set_vertex_attribute("${i}_in", 'shape', 'invhouse');
-					$g0->set_vertex_attribute("${i}_in", 'type',  'inport');
+					$g0->set_vertex_attribute("${v}_in", 'shape', 'invhouse');
+					$g0->set_vertex_attribute("${v}_in", 'type',  'inport');
 
 					$g0->delete_edge(@{$e});
 				}
 			}
 		}
-		$i++;
 	}
 }
 
@@ -362,6 +373,7 @@ for my $v ($g0->vertices) {$g0->set_vertex_attribute($v, 'shape', 'point');}
 $w0->write_graph ($g0, 'dot\00.dot');
 
 operations($g0);
+index_ports($g0);
 $w0->write_graph ($g0, 'dot\01.dot');
 
 clean1($g0);
@@ -399,6 +411,7 @@ my @CODE2 = (
  'im-6,3', 'im-6,5', 'im-6,1', 'im-6,7',
 ],
 );
+
 colorize($g0, \@CODE2, \@COLORS);
 $w0->write_graph ($g0, 'dot\03.dot');
 
