@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+<style type="text/css">
+	body {
+		background-color: #444;
+		color: #FFF;
+		font-size: 2em;
+		font-family: 'Ropa Sans', cursive;
+		background: -webkit-radial-gradient(#010101, #003030);
+		background: -moz-radial-gradient(#406060, #101010);
+		background: -o-radial-gradient(#406060, #101010);
+		background: radial-gradient(#406060, #101010);
+		-webkit-font-smoothing: antialiased;
+	}
+	.step { width: 1024px; }
+	.step:not(.active) { opacity: 0.3; }
+	.substep { opacity: 0.1; }
+	.substep.active { opacity: 1; }
+	.substep.previous { opacity: 0.7; }
+	img { margin-left: 450px; }
+	.no-support-message { display: none; }
+	.impress-not-supported .no-support-message {
+		display: block;
+		color: red;
+		font-size: 2em;
+	}
+	A:link    { text-decoration: none; color: green }
+	A:visited { text-decoration: none; color: yellow  }
+	A:active  { text-decoration: none; color: yellow  }
+	A:hover   { text-decoration: underline; color: red }
+</style>		
+</head>
+<body>
+<div id=impress>
+
+<div class=step>
+	<h1>DFG mapping technique</h1>
+	code generation for multiple connected Forth cores<br>
+	<a href="http://goo.gl/u17KA">goo.gl/u17KA</a>
+</div>
+
+<div class=step data-y=800>
+<h2>Data Flow Graph?</h2>
+<img type="image/svg+xml" src="radix8_2/00.svg" allign="right" style="float: right; margin-left: 10px;"/>
+Program as directed graph of data flowing between operations.
+<p>Vertex = operation type</p>
+<p>Edge = data value</p>
+<p>Label = multiplicand</p>
+<p>FFT8 as DSP example</p>
+</div>
+
+<div class=step data-y=1600>
+<h2>Vertex shape = operation type</h2>
+<img type="image/svg+xml" src="radix8_2/02.svg" allign="right" style="float: right" width="100%"/>
+<p>.</p><p>Oval = (+ -), Rectangle = [*], Arrow = &lt;input output&gt;</p>
+<p>Example has significant data parallelism. 17 operations at first level.</p>
+</div>
+
+<div class=step data-y=2400>
+<h2>Mapping approach</h2>
+<ol>
+<li class=substep>Uniform k-way graph partitioning; k = number of cores in use</li>
+<li class=substep>Code generation; one sub-graph per core</li>
+</ol>
+</div>
+
+<div class=step data-y=2400 data-x=3000 data-rotate=-90 data-scale=4>
+<h2>2-way graph partitioning (example)</h2>
+<li class=substep>Sub-graphs are of about the same size</li>
+<li class=substep>Number of edges running between separated components is small</li>
+<p></p>
+<img type="image/svg+xml" src="radix8_2/03.svg" allign="right" style="float: right" width="100%"/>
+<i class=substep>NP-hard problem. Many methods known</i>
+</div>
+
+<div class=step data-y=-2400 data-x=3000 data-rotate=-90 data-scale=4>
+<h2>6-way graph partitioning example</h2>
+<li class=substep>More colors - more edges crossing</li>
+<li class=substep>Hard to partition uniformly</li>
+<p></p>
+<img type="image/svg+xml" src="radix8_6/03.svg" allign="right" style="float: right" width="100%"/>
+</div>
+
+<div class=step data-y=2400 data-x=6000 data-rotate=-90 data-scale=4>
+<h2>Color->Color edges = inter-processor exchange</h2>
+<img type="image/svg+xml" src="radix8_2/04.svg" allign="right" style="float: right" width="100%"/>
+</div>
+
+<div class=step data-y=-9800 data-x=6000 data-rotate=-90 data-scale=4>
+<h2>Hard to see example</h2>
+<img type="image/svg+xml" src="radix8_6/04.svg" allign="right" style="float: right" width="200%"/>
+</div>
+
+<div class=step data-y=3200>
+<h2>Graph serialization</h2>
+<li class=substep></li>
+</div>
+
+<div class=step data-y=2400 data-x=-5000 data-rotate=90 data-scale=4>
+<h2>2-way graph serialization (example)</h2>
+<img type="image/svg+xml" src="radix8_2/05.svg" allign="right" style="float: right" width="100%"/>
+</div>
+
+<div class=step data-y=2400 data-x=-25000 data-rotate=90 data-scale=4>
+<h2>6-way graph serialization (example)</h2>
+<img type="image/svg+xml" src="radix8_6/05.svg" allign="right" style="float: right" width="200%"/>
+</div>
+
+</div>
+
+<script type="text/javascript" src="impress.sub.js"></script>
+</body>
+</html>

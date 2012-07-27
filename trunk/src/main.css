@@ -6,6 +6,11 @@ body {
   counter-reset: section;
 }
 
+div.image {
+	text-align: center;
+	padding: 20px 0px;
+}
+
 .content {
   vertical-align: baseline;
 }
