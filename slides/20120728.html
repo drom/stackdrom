@@ -124,6 +124,26 @@ Program as directed acyclic graph of data flowing between operations.
 <div class=step data-y=2400 data-x=-25000 data-rotate=90 data-scale=4>
 <img type="image/svg+xml" src="radix8_6/code.png" allign="right" style="float: right" width="100%"/>
 </div>
+
+<div class=step data-y=4800>
+<h2>List based Graph to Stack scheduling</h2>
+<li class=substep>List of all operations is given in the initial priority order</li>
+<li class=substep>Each operation becomes ready for execution when its operands are available on stack</li>
+<li class=substep>Operand's availability checked by ordered set of heuristics </li>
+<li class=substep>Backtracking algorithm used to return from dead branches </li>
+<li class=substep>Forth code generated as output </li>
+</div>
+
+<div class=step data-y=5600>
+<h2>Conclutions</h2>
+<li class=substep>Scheduler may fail because of limited set of heuristics</li>
+<li class=substep>Big set of heuristics may lead to extra stack manipulations</li>
+<li class=substep>Parallel scheduling of all nodes will help resolving data dependencies between nodes</li>
+<li class=substep>Extra code optimizations may be required</li>
+<li class=substep>Set of heuristics depend on target ISA</li>
+</div>
+
+
 </div>
 
 <script type="text/javascript" src="impress.sub.js"></script>
