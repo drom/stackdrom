@@ -5,21 +5,10 @@
 #
 package VeriSub;
 
+use Moose;
+use Graph;
 use strict;
 use POSIX;
-
-sub new {
-	my $class = shift;
-	my $self  = {
-		START => time(),
-		AGE   => 0,
-		NAME  => shift,
-		LINKS => [],
-		@_
-	};
-	bless($self, $class);
-	return $self;
-}
 
 sub logic_dim {
 #	my $self = shift;
@@ -114,6 +103,32 @@ sub gcdlen {
 		$ret = gcd ($ret, ${$formats->{$root}}[0]);
 	}
 	return $ret;
+}
+
+sub unite_graphs {
+	my $g0 = shift;
+	my $g1 = shift;
+	my $attr;
+
+	my @gv = $g1->vertices;
+	for my $v (@gv) {
+#		push (@over_vertices, $v) if $g0->has_vertex($v);
+		$g0->add_vertex($v);
+		$attr = $g1->get_vertex_attributes($v);
+		# ToDo: check vertex attributes for conflict
+		$g0->set_vertex_attributes($v, $attr);
+	}
+	for my $v (@gv) {
+		my @edges = $g1->edges_from($v);
+		for my $e (@edges) {
+			my @e = @{$e};
+#			push (@over_edges, @e) if $g0->has_edge(@e);
+			$g0->add_edge(@e);
+			$attr = $g1->get_edge_attributes(@e);
+			# ToDo: check for conflicted attributes
+			$g0->set_edge_attributes(@e, $attr);
+		}
+	}
 }
 
 1;
