@@ -9,6 +9,8 @@ verilog
 dot
 assembler
 
+in-browser source editor and debugger. 
+
 <>\Far2\Plugins\colorer\base\hrc\proto.hrc
 
 <prototype name="llvm" group="rare" description="LLVM IR">
@@ -20,3 +22,6 @@ assembler
   <filename weight='3'>/\.json$/i</filename>
 </prototype>
 
+
+Cool stuff:
+Anonymous+Pro font
