@@ -23,7 +23,7 @@ module tb ();
 			#(`SYSCLK_PERIOD/2);
 		end
 
-hornet DUT (
+hornet_topo DUT (
 	.clk     (clk),
 	.reset_n (reset_n)
 );

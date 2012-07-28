@@ -8,6 +8,8 @@
   <script type="text/javascript" src="sputnik.js"></script>
   <script type="text/javascript" src="../../lib/StackDrom.js"></script>
   <script type="text/javascript" src="../../lib/sortable.js"></script>
+  <!--script src="http://wavedrom.googlecode.com/svn/trunk/skins/default.js" type="text/javascript"></script-->
+  <!--script src="http://wavedrom.googlecode.com/svn/trunk/WaveDrom.js" type="text/javascript"></script-->
   <link href="../main.css" media="screen" rel="Stylesheet" type="text/css" /> 
 </head>
 
@@ -18,13 +20,9 @@
 
 <h2>Introduction</h2>
 
-<p class="content">
-<img type="image/svg+xml" src="bd.svg" align="right"/>
+<div>
 Experimental Forth processor description build from the following configuration file: <a href="sputnik.js">sputnik.js</a>
-<br><br>
-Figure below is an architectural block diagram of the Sputnik.
-<br><br><br><br><br><br><br><br><br><br><br><br>
-</p>
+</div>
 
 <h2>Instruction set summary</h2>
 
@@ -41,6 +39,76 @@ Internal instruction format. <div id=liw></div>
 <h2>Words</h2>
 
 Forth words implementations. <div id=words></div>
+
+<h2>Micro-Architecture Block diagrams</h2>
+
+<h3>Instruction fetch and decode sybsystem</h3>
+
+<div class="image">
+<img type="image/svg+xml" src="ifx.svg"    align="center"/>
+<div>Instruction fetch unit (ifx) and instruction decoder unit (idx)</div>
+</div>
+
+
+<h4>Instruction fetch address unit (ifa)</h4>
+
+<div class="image">
+<script type="WaveDrom">
+{"signal":[
+ {"name":"clk",       "wave": "P................." },
+ [ "t_pc",
+  {"name":"dat",      "wave": "x3x.....4.x.......", "data": ["PC","PC"] },
+  {"name":"req",      "wave": "010.....1.0......."},
+  {"name":"ack",      "wave": "x1x.....01x......."},
+ ],
+ ["i_a",
+  {"name":"dat",      "wave": "x.33..3.3.44.4.4..", "data": ["A0","A1","A2","A3","A0","A1","A2","A3"] },
+  {"name":"req",      "wave": "0.1.......1......."},
+  {"name":"ack",      "wave": "x.10.10101101010.1"}
+ ]
+]}
+</script>
+<div><b>ifa</b> generates the address sequence using PC as a start</div>
+</div>
+
+
+<h4>Instruction prefetch buffer (ipb)</h4>
+
+<div class="image">
+<script type="WaveDrom">
+{"signal":[
+ {"name":"clk",       "wave": "P................." },
+ [ "t_a",
+  {"name":"dat",      "wave": "x3x.....4.x.......", "data": ["PC","PC"] },
+  {"name":"req",      "wave": "010.....1.0......."},
+  {"name":"ack",      "wave": "x1x.....01x......."},
+ ],
+ [ "t_d",
+  {"name":"dat",      "wave": "x3x.....4.x.......", "data": ["PC","PC"] },
+  {"name":"req",      "wave": "010.....1.0......."},
+  {"name":"ack",      "wave": "x1x.....01x......."},
+ ],
+ ["i_0",
+  {"name":"dat",      "wave": "x.33..3.3.44.4.4..", "data": ["A0","A1","A2","A3","A0","A1","A2","A3"] },
+  {"name":"req",      "wave": "0.1.......1......."},
+  {"name":"ack",      "wave": "x.10.10101101010.1"}
+ ]
+]}
+</script>
+<div><b>ipb</b> </div>
+</div>
+
+
+<div class="image">
+<img type="image/svg+xml" src="stacks.svg" align="center"/>
+<div>Stack external interfaces</div>
+</div>
+
+<div class="image">
+<img type="image/svg+xml" src="source.svg" align="center"/>
+<div></div>
+</div>
+
 
 </body>
 </html>

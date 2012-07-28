@@ -11,4 +11,4 @@
 @dot -Gbgcolor="transparent" -Ecolor="white" -Estyle="bold" -Efontcolor="yellow" -Ncolor="white" -Nfontcolor="white" -Tsvg -Nfontname=Helvetica -Efontname=Helvetica -odoc\05.svg dot\05.dot
 @dot -Gbgcolor="transparent" -Ecolor="white" -Estyle="bold" -Efontcolor="yellow" -Ncolor="white" -Nfontcolor="white" -Tsvg -Nfontname=Helvetica -Efontname=Helvetica -odoc\06.svg dot\06.dot
 
-@neato -Tsvg -Nfontname=Helvetica -Efontname=Helvetica -odoc\map.svg dot\map.dot
+@neato -Gbgcolor="transparent" -Ecolor="white" -Estyle="bold" -Efontcolor="yellow" -Ncolor="white" -Nfontcolor="white" -Tsvg -Nfontname=Helvetica -Efontname=Helvetica -odoc\map.svg dot\map.dot

@@ -44,7 +44,7 @@
 <div class=step data-y=800>
 <h2>Data Flow Graph?</h2>
 <img type="image/svg+xml" src="radix8_2/00.svg" allign="right" style="float: right; margin-left: 10px;"/>
-Program as directed graph of data flowing between operations.
+Program as directed acyclic graph of data flowing between operations.
 <p>Vertex = operation type</p>
 <p>Edge = data value</p>
 <p>Label = multiplicand</p>
@@ -54,7 +54,7 @@ Program as directed graph of data flowing between operations.
 <div class=step data-y=1600>
 <h2>Vertex shape = operation type</h2>
 <img type="image/svg+xml" src="radix8_2/02.svg" allign="right" style="float: right" width="100%"/>
-<p>.</p><p>Oval = (+ -), Rectangle = [*], Arrow = &lt;input output&gt;</p>
+<p>.</p><p>Ellipse = (+ -), Rectangle = [*], Arrow = &lt;input output&gt;</p>
 <p>Example has significant data parallelism. 17 operations at first level.</p>
 </div>
 
@@ -62,7 +62,9 @@ Program as directed graph of data flowing between operations.
 <h2>Mapping approach</h2>
 <ol>
 <li class=substep>Uniform k-way graph partitioning; k = number of cores in use</li>
-<li class=substep>Code generation; one sub-graph per core</li>
+<li class=substep>Mapping to interconnect topology; one sub-graph per core</li>
+<li class=substep>Instruction scheduling; Stack allocation</li>
+<li class=substep>Code generation</li>
 </ol>
 </div>
 
@@ -88,26 +90,40 @@ Program as directed graph of data flowing between operations.
 <img type="image/svg+xml" src="radix8_2/04.svg" allign="right" style="float: right" width="100%"/>
 </div>
 
-<div class=step data-y=-9800 data-x=6000 data-rotate=-90 data-scale=4>
-<h2>Hard to see example</h2>
+<div class=step data-y=-2400 data-x=6000 data-rotate=-90 data-scale=4>
+<h2>Hard to see example with 6 partitions</h2>
 <img type="image/svg+xml" src="radix8_6/04.svg" allign="right" style="float: right" width="100%"/>
 </div>
 
 <div class=step data-y=3200>
-<h2>Graph serialization</h2>
-<li class=substep></li>
+<h2>Interconnect topology</h2>
+<img type="image/svg+xml" src="radix8_6/map.svg" allign="right" style="float: right; margin-left: 10px;"/>
+<li>Core interactions to be mapped to existing interconnect topology</li>
+<li>Interconnect will have capacity, throughput and latency</li>
+<li>Each exchange is the source of data dependency</li>
+<li>Data exchanges will be spreaded in time</li>
 </div>
 
-<div class=step data-y=2400 data-x=-5000 data-rotate=90 data-scale=4>
+<div class=step data-y=4000>
+<h2>Sub-graph serialization</h2>
+<li>Operations in each node has to be executed sequentially.</li>
+<li>Simple expression evaluation is easy with stack machine.</li>
+<li>But DFG is not always the tree.</li>
+</div>
+
+<div class=step data-y=2400 data-x=-10000 data-rotate=90 data-scale=4>
 <h2>2-way graph serialization (example)</h2>
-<img type="image/svg+xml" src="radix8_2/05.svg" allign="right" style="float: right" width="100%"/>
+<img type="image/svg+xml" src="radix8_2/06.svg" allign="right" style="float: right" width="100%"/>
+</div>
+
+<div class=step data-y=2400 data-x=-20000 data-rotate=90 data-scale=4>
+<h2>6-way graph serialization (example)</h2>
+<img type="image/svg+xml" src="radix8_6/06.svg" allign="right" style="float: right" width="100%"/>
 </div>
 
 <div class=step data-y=2400 data-x=-25000 data-rotate=90 data-scale=4>
-<h2>6-way graph serialization (example)</h2>
-<img type="image/svg+xml" src="radix8_6/05.svg" allign="right" style="float: right" width="100%"/>
+<img type="image/svg+xml" src="radix8_6/code.png" allign="right" style="float: right" width="100%"/>
 </div>
-
 </div>
 
 <script type="text/javascript" src="impress.sub.js"></script>
