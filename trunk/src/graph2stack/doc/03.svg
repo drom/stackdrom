@@ -15,7 +15,7 @@
 </g>
 <!-- im&#45;2,0 -->
 <g id="node15" class="node"><title>im&#45;2,0</title>
-<ellipse fill="greenyellow" stroke="greenyellow" cx="790" cy="-558" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="790" cy="-558" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="790" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;2,0</text>
 </g>
 <!-- im&#45;0,0&#45;&gt;im&#45;2,0 -->
@@ -25,7 +25,7 @@
 </g>
 <!-- im&#45;2,4 -->
 <g id="node18" class="node"><title>im&#45;2,4</title>
-<ellipse fill="greenyellow" stroke="greenyellow" cx="685" cy="-486" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="685" cy="-486" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="685" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;2,4</text>
 </g>
 <!-- im&#45;0,0&#45;&gt;im&#45;2,4 -->
@@ -40,7 +40,7 @@
 </g>
 <!-- im&#45;1,1 -->
 <g id="node9" class="node"><title>im&#45;1,1</title>
-<ellipse fill="violet" stroke="violet" cx="379" cy="-558" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="379" cy="-558" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="379" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;1,1</text>
 </g>
 <!-- im&#45;0,1&#45;&gt;im&#45;1,1 -->
@@ -50,7 +50,7 @@
 </g>
 <!-- im&#45;1,7 -->
 <g id="node14" class="node"><title>im&#45;1,7</title>
-<ellipse fill="orange" stroke="orange" cx="251" cy="-558" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="251" cy="-558" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="251" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;1,7</text>
 </g>
 <!-- im&#45;0,1&#45;&gt;im&#45;1,7 -->
@@ -65,7 +65,7 @@
 </g>
 <!-- im&#45;1,2 -->
 <g id="node10" class="node"><title>im&#45;1,2</title>
-<ellipse fill="greenyellow" stroke="greenyellow" cx="1168" cy="-558" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="1168" cy="-558" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="1168" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;1,2</text>
 </g>
 <!-- im&#45;0,2&#45;&gt;im&#45;1,2 -->
@@ -75,7 +75,7 @@
 </g>
 <!-- im&#45;1,6 -->
 <g id="node13" class="node"><title>im&#45;1,6</title>
-<ellipse fill="greenyellow" stroke="greenyellow" cx="1145" cy="-486" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="1145" cy="-486" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="1145" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;1,6</text>
 </g>
 <!-- im&#45;0,2&#45;&gt;im&#45;1,6 -->
@@ -90,7 +90,7 @@
 </g>
 <!-- im&#45;1,3 -->
 <g id="node11" class="node"><title>im&#45;1,3</title>
-<ellipse fill="violet" stroke="violet" cx="160" cy="-558" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="160" cy="-558" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="160" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;1,3</text>
 </g>
 <!-- im&#45;0,3&#45;&gt;im&#45;1,3 -->
@@ -100,7 +100,7 @@
 </g>
 <!-- im&#45;1,5 -->
 <g id="node12" class="node"><title>im&#45;1,5</title>
-<ellipse fill="orange" stroke="orange" cx="69" cy="-558" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="69" cy="-558" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="69" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;1,5</text>
 </g>
 <!-- im&#45;0,3&#45;&gt;im&#45;1,5 -->
@@ -174,7 +174,7 @@
 </g>
 <!-- im&#45;2,1 -->
 <g id="node16" class="node"><title>im&#45;2,1</title>
-<ellipse fill="violet" stroke="violet" cx="379" cy="-486" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="379" cy="-486" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="379" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;2,1</text>
 </g>
 <!-- im&#45;1,1&#45;&gt;im&#45;2,1 -->
@@ -185,7 +185,7 @@
 </g>
 <!-- im&#45;2,3 -->
 <g id="node17" class="node"><title>im&#45;2,3</title>
-<ellipse fill="violet" stroke="violet" cx="507" cy="-486" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="507" cy="-486" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="507" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;2,3</text>
 </g>
 <!-- im&#45;1,1&#45;&gt;im&#45;2,3 -->
@@ -195,7 +195,7 @@
 </g>
 <!-- im&#45;4,0 -->
 <g id="node23" class="node"><title>im&#45;4,0</title>
-<ellipse fill="greenyellow" stroke="greenyellow" cx="788" cy="-486" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="788" cy="-486" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="788" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;4,0</text>
 </g>
 <!-- im&#45;1,2&#45;&gt;im&#45;4,0 -->
@@ -205,7 +205,7 @@
 </g>
 <!-- im&#45;4,2 -->
 <g id="node24" class="node"><title>im&#45;4,2</title>
-<ellipse fill="greenyellow" stroke="greenyellow" cx="1323" cy="-486" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="1323" cy="-486" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="1323" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;4,2</text>
 </g>
 <!-- im&#45;1,2&#45;&gt;im&#45;4,2 -->
@@ -226,7 +226,7 @@
 </g>
 <!-- im&#45;2,5 -->
 <g id="node19" class="node"><title>im&#45;2,5</title>
-<ellipse fill="orange" stroke="orange" cx="251" cy="-486" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="251" cy="-486" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="251" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;2,5</text>
 </g>
 <!-- im&#45;1,5&#45;&gt;im&#45;2,5 -->
@@ -237,7 +237,7 @@
 </g>
 <!-- im&#45;2,7 -->
 <g id="node20" class="node"><title>im&#45;2,7</title>
-<ellipse fill="orange" stroke="orange" cx="106" cy="-486" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="106" cy="-486" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="106" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;2,7</text>
 </g>
 <!-- im&#45;1,5&#45;&gt;im&#45;2,7 -->
@@ -247,7 +247,7 @@
 </g>
 <!-- re&#45;5,5 -->
 <g id="node73" class="node"><title>re&#45;5,5</title>
-<ellipse fill="yellow" stroke="yellow" cx="1181" cy="-162" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="1181" cy="-162" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="1181" y="-158.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;5,5</text>
 </g>
 <!-- im&#45;1,6&#45;&gt;re&#45;5,5 -->
@@ -257,7 +257,7 @@
 </g>
 <!-- re&#45;5,7 -->
 <g id="node74" class="node"><title>re&#45;5,7</title>
-<ellipse fill="yellow" stroke="yellow" cx="1367" cy="-162" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="1367" cy="-162" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="1367" y="-158.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;5,7</text>
 </g>
 <!-- im&#45;1,6&#45;&gt;re&#45;5,7 -->
@@ -288,7 +288,7 @@
 </g>
 <!-- im&#45;3,1 -->
 <g id="node21" class="node"><title>im&#45;3,1</title>
-<polygon fill="violet" stroke="violet" points="572,-432 516,-432 516,-216 572,-216 572,-432"/>
+<polygon fill="yellow" stroke="yellow" points="572,-432 516,-432 516,-216 572,-216 572,-432"/>
 <text text-anchor="middle" x="544" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;3,1</text>
 </g>
 <!-- im&#45;2,1&#45;&gt;im&#45;3,1 -->
@@ -299,7 +299,7 @@
 </g>
 <!-- im&#45;5,0 -->
 <g id="node25" class="node"><title>im&#45;5,0</title>
-<ellipse fill="greenyellow" stroke="greenyellow" cx="786" cy="-324" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="786" cy="-324" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="786" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;5,0</text>
 </g>
 <!-- im&#45;2,3&#45;&gt;im&#45;5,0 -->
@@ -309,7 +309,7 @@
 </g>
 <!-- im&#45;5,4 -->
 <g id="node28" class="node"><title>im&#45;5,4</title>
-<ellipse fill="greenyellow" stroke="greenyellow" cx="678" cy="-324" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="678" cy="-324" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="678" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;5,4</text>
 </g>
 <!-- im&#45;2,3&#45;&gt;im&#45;5,4 -->
@@ -320,7 +320,7 @@
 </g>
 <!-- im&#45;5,1 -->
 <g id="node26" class="node"><title>im&#45;5,1</title>
-<ellipse fill="violet" stroke="violet" cx="488" cy="-162" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="488" cy="-162" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="488" y="-158.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;5,1</text>
 </g>
 <!-- im&#45;2,4&#45;&gt;im&#45;5,1 -->
@@ -330,7 +330,7 @@
 </g>
 <!-- im&#45;5,3 -->
 <g id="node27" class="node"><title>im&#45;5,3</title>
-<ellipse fill="violet" stroke="violet" cx="579" cy="-162" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="579" cy="-162" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="579" y="-158.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;5,3</text>
 </g>
 <!-- im&#45;2,4&#45;&gt;im&#45;5,3 -->
@@ -340,7 +340,7 @@
 </g>
 <!-- re&#45;6,2 -->
 <g id="node76" class="node"><title>re&#45;6,2</title>
-<ellipse fill="cyan" stroke="cyan" cx="390" cy="-324" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="390" cy="-324" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="390" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;6,2</text>
 </g>
 <!-- im&#45;2,5&#45;&gt;re&#45;6,2 -->
@@ -351,7 +351,7 @@
 </g>
 <!-- re&#45;6,6 -->
 <g id="node79" class="node"><title>re&#45;6,6</title>
-<ellipse fill="cyan" stroke="cyan" cx="285" cy="-324" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="285" cy="-324" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="285" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;6,6</text>
 </g>
 <!-- im&#45;2,5&#45;&gt;re&#45;6,6 -->
@@ -361,7 +361,7 @@
 </g>
 <!-- im&#45;3,7 -->
 <g id="node22" class="node"><title>im&#45;3,7</title>
-<polygon fill="orange" stroke="orange" points="134,-432 78,-432 78,-216 134,-216 134,-432"/>
+<polygon fill="yellow" stroke="yellow" points="134,-432 78,-432 78,-216 134,-216 134,-432"/>
 <text text-anchor="middle" x="106" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;3,7</text>
 </g>
 <!-- im&#45;2,7&#45;&gt;im&#45;3,7 -->
@@ -383,7 +383,7 @@
 </g>
 <!-- im&#45;5,5 -->
 <g id="node29" class="node"><title>im&#45;5,5</title>
-<ellipse fill="orange" stroke="orange" cx="187" cy="-162" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="187" cy="-162" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="187" y="-158.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;5,5</text>
 </g>
 <!-- im&#45;3,7&#45;&gt;im&#45;5,5 -->
@@ -393,7 +393,7 @@
 </g>
 <!-- im&#45;5,7 -->
 <g id="node30" class="node"><title>im&#45;5,7</title>
-<ellipse fill="orange" stroke="orange" cx="96" cy="-162" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="96" cy="-162" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="96" y="-158.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;5,7</text>
 </g>
 <!-- im&#45;3,7&#45;&gt;im&#45;5,7 -->
@@ -413,7 +413,7 @@
 </g>
 <!-- im&#45;6,2 -->
 <g id="node32" class="node"><title>im&#45;6,2</title>
-<ellipse fill="greenyellow" stroke="greenyellow" cx="1473" cy="-324" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="1473" cy="-324" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="1473" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;6,2</text>
 </g>
 <!-- im&#45;4,2&#45;&gt;im&#45;6,2 -->
@@ -423,7 +423,7 @@
 </g>
 <!-- im&#45;6,6 -->
 <g id="node35" class="node"><title>im&#45;6,6</title>
-<ellipse fill="greenyellow" stroke="greenyellow" cx="1585" cy="-324" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="1585" cy="-324" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="1585" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;6,6</text>
 </g>
 <!-- im&#45;4,2&#45;&gt;im&#45;6,6 -->
@@ -443,7 +443,7 @@
 </g>
 <!-- im&#45;6,1 -->
 <g id="node31" class="node"><title>im&#45;6,1</title>
-<ellipse fill="violet" stroke="violet" cx="175" cy="-90" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="175" cy="-90" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="175" y="-86.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;6,1</text>
 </g>
 <!-- im&#45;5,1&#45;&gt;im&#45;6,1 -->
@@ -453,7 +453,7 @@
 </g>
 <!-- im&#45;6,7 -->
 <g id="node36" class="node"><title>im&#45;6,7</title>
-<ellipse fill="orange" stroke="orange" cx="323" cy="-90" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="323" cy="-90" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="323" y="-86.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;6,7</text>
 </g>
 <!-- im&#45;5,1&#45;&gt;im&#45;6,7 -->
@@ -463,7 +463,7 @@
 </g>
 <!-- im&#45;6,3 -->
 <g id="node33" class="node"><title>im&#45;6,3</title>
-<ellipse fill="violet" stroke="violet" cx="451" cy="-90" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="451" cy="-90" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="451" y="-86.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;6,3</text>
 </g>
 <!-- im&#45;5,3&#45;&gt;im&#45;6,3 -->
@@ -473,7 +473,7 @@
 </g>
 <!-- im&#45;6,5 -->
 <g id="node34" class="node"><title>im&#45;6,5</title>
-<ellipse fill="orange" stroke="orange" cx="569" cy="-90" rx="36.096" ry="18"/>
+<ellipse fill="yellow" stroke="yellow" cx="569" cy="-90" rx="36.096" ry="18"/>
 <text text-anchor="middle" x="569" y="-86.3" font-family="Helvetica,sans-Serif" font-size="14.00">im&#45;6,5</text>
 </g>
 <!-- im&#45;5,3&#45;&gt;im&#45;6,5 -->
@@ -580,7 +580,7 @@
 </g>
 <!-- re&#45;2,0 -->
 <g id="node59" class="node"><title>re&#45;2,0</title>
-<ellipse fill="cyan" stroke="cyan" cx="896" cy="-558" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="896" cy="-558" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="896" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;2,0</text>
 </g>
 <!-- re&#45;0,0&#45;&gt;re&#45;2,0 -->
@@ -590,7 +590,7 @@
 </g>
 <!-- re&#45;2,4 -->
 <g id="node62" class="node"><title>re&#45;2,4</title>
-<ellipse fill="cyan" stroke="cyan" cx="1035" cy="-558" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="1035" cy="-558" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="1035" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;2,4</text>
 </g>
 <!-- re&#45;0,0&#45;&gt;re&#45;2,4 -->
@@ -615,7 +615,7 @@
 </g>
 <!-- re&#45;1,7 -->
 <g id="node58" class="node"><title>re&#45;1,7</title>
-<ellipse fill="yellow" stroke="yellow" cx="1588" cy="-558" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="1588" cy="-558" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="1588" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;1,7</text>
 </g>
 <!-- re&#45;0,1&#45;&gt;re&#45;1,7 -->
@@ -630,7 +630,7 @@
 </g>
 <!-- re&#45;1,2 -->
 <g id="node54" class="node"><title>re&#45;1,2</title>
-<ellipse fill="cyan" stroke="cyan" cx="588" cy="-558" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="588" cy="-558" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="588" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;1,2</text>
 </g>
 <!-- re&#45;0,2&#45;&gt;re&#45;1,2 -->
@@ -640,7 +640,7 @@
 </g>
 <!-- re&#45;1,6 -->
 <g id="node57" class="node"><title>re&#45;1,6</title>
-<ellipse fill="cyan" stroke="cyan" cx="192" cy="-324" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="192" cy="-324" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="192" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;1,6</text>
 </g>
 <!-- re&#45;0,2&#45;&gt;re&#45;1,6 -->
@@ -665,7 +665,7 @@
 </g>
 <!-- re&#45;1,5 -->
 <g id="node56" class="node"><title>re&#45;1,5</title>
-<ellipse fill="yellow" stroke="yellow" cx="1500" cy="-558" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="1500" cy="-558" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="1500" y="-554.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;1,5</text>
 </g>
 <!-- re&#45;0,3&#45;&gt;re&#45;1,5 -->
@@ -760,7 +760,7 @@
 </g>
 <!-- re&#45;4,0 -->
 <g id="node67" class="node"><title>re&#45;4,0</title>
-<ellipse fill="cyan" stroke="cyan" cx="894" cy="-486" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="894" cy="-486" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="894" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;4,0</text>
 </g>
 <!-- re&#45;1,2&#45;&gt;re&#45;4,0 -->
@@ -770,7 +770,7 @@
 </g>
 <!-- re&#45;4,2 -->
 <g id="node68" class="node"><title>re&#45;4,2</title>
-<ellipse fill="cyan" stroke="cyan" cx="596" cy="-486" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="596" cy="-486" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="596" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;4,2</text>
 </g>
 <!-- re&#45;1,2&#45;&gt;re&#45;4,2 -->
@@ -791,7 +791,7 @@
 </g>
 <!-- re&#45;2,5 -->
 <g id="node63" class="node"><title>re&#45;2,5</title>
-<ellipse fill="yellow" stroke="yellow" cx="1588" cy="-486" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="1588" cy="-486" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="1588" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;2,5</text>
 </g>
 <!-- re&#45;1,5&#45;&gt;re&#45;2,5 -->
@@ -802,7 +802,7 @@
 </g>
 <!-- re&#45;2,7 -->
 <g id="node64" class="node"><title>re&#45;2,7</title>
-<ellipse fill="yellow" stroke="yellow" cx="1500" cy="-486" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="1500" cy="-486" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="1500" y="-482.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;2,7</text>
 </g>
 <!-- re&#45;1,5&#45;&gt;re&#45;2,7 -->
@@ -854,7 +854,7 @@
 </g>
 <!-- re&#45;5,0 -->
 <g id="node69" class="node"><title>re&#45;5,0</title>
-<ellipse fill="cyan" stroke="cyan" cx="892" cy="-324" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="892" cy="-324" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="892" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;5,0</text>
 </g>
 <!-- re&#45;2,3&#45;&gt;re&#45;5,0 -->
@@ -864,7 +864,7 @@
 </g>
 <!-- re&#45;5,4 -->
 <g id="node72" class="node"><title>re&#45;5,4</title>
-<ellipse fill="cyan" stroke="cyan" cx="980" cy="-324" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="980" cy="-324" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="980" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;5,4</text>
 </g>
 <!-- re&#45;2,3&#45;&gt;re&#45;5,4 -->
@@ -906,7 +906,7 @@
 </g>
 <!-- re&#45;3,7 -->
 <g id="node66" class="node"><title>re&#45;3,7</title>
-<polygon fill="yellow" stroke="yellow" points="1402,-432 1348,-432 1348,-216 1402,-216 1402,-432"/>
+<polygon fill="tomato" stroke="tomato" points="1402,-432 1348,-432 1348,-216 1402,-216 1402,-432"/>
 <text text-anchor="middle" x="1375" y="-320.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;3,7</text>
 </g>
 <!-- re&#45;2,7&#45;&gt;re&#45;3,7 -->
@@ -978,7 +978,7 @@
 </g>
 <!-- re&#45;6,7 -->
 <g id="node80" class="node"><title>re&#45;6,7</title>
-<ellipse fill="yellow" stroke="yellow" cx="1367" cy="-90" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="1367" cy="-90" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="1367" y="-86.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;6,7</text>
 </g>
 <!-- re&#45;5,1&#45;&gt;re&#45;6,7 -->
@@ -998,7 +998,7 @@
 </g>
 <!-- re&#45;6,5 -->
 <g id="node78" class="node"><title>re&#45;6,5</title>
-<ellipse fill="yellow" stroke="yellow" cx="1179" cy="-90" rx="35.1455" ry="18"/>
+<ellipse fill="tomato" stroke="tomato" cx="1179" cy="-90" rx="35.1455" ry="18"/>
 <text text-anchor="middle" x="1179" y="-86.3" font-family="Helvetica,sans-Serif" font-size="14.00">re&#45;6,5</text>
 </g>
 <!-- re&#45;5,3&#45;&gt;re&#45;6,5 -->

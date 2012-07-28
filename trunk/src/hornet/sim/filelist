@@ -1,4 +1,6 @@
 +define+USE_SV
 
+../rtl/hornet_core.v
+../rtl/hornet_memo.v
+../rtl/hornet_topo.v
 tb.v
-../rtl/hornet.v

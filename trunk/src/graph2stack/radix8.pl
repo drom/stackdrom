@@ -2159,7 +2159,7 @@ my @CODE2 = (
 [ qw (im-1,6 im-1,2 im-1,7 im-1,1 im-1,3 im-1,5 im-2,5 im-2,7 im-3,7 im-2,1 im-2,3 im-3,1 im-5,7 im-5,5 im-2,0 im-2,4 im-5,1 im-6,1 im-6,7 im-5,3 im-6,5 im-6,3 im-4,2 im-4,0 im-5,4 im-5,0 im-6,2 im-6,6)],
 );
 
-colorize($g0, \@CODE6, \@COLORS);
+colorize($g0, \@CODE2, \@COLORS);
 $w0->write_graph ($g0, 'dot\03.dot');
 
 
@@ -2183,7 +2183,7 @@ print "TIME:" .  (time() - $timer);
 
 #print Dumper (dfg_colors($g0));
 
-straighten($g0, \@CODE6, \@COLORS);
+straighten($g0, \@CODE2, \@COLORS);
 $w0->write_graph ($g0, 'dot\05.dot');
 
 straighten_ouports($g0);

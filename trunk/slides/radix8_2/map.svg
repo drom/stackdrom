@@ -8,26 +8,25 @@
  viewBox="0.00 0.00 127.10 100.68" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 96.6788)">
 <title>g</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-96.6788 124.098,-96.6788 124.098,5 -4,5"/>
 <!-- tomato -->
 <g id="node1" class="node"><title>tomato</title>
-<ellipse fill="none" stroke="black" cx="38.4983" cy="-18" rx="38.4949" ry="18"/>
-<text text-anchor="middle" x="38.4983" y="-14.3" font-family="Helvetica,sans-Serif" font-size="14.00">tomato</text>
+<ellipse fill="none" stroke="white" cx="38.4983" cy="-18" rx="38.4949" ry="18"/>
+<text text-anchor="middle" x="38.4983" y="-14.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">tomato</text>
 </g>
 <!-- yellow -->
 <g id="node2" class="node"><title>yellow</title>
-<ellipse fill="none" stroke="black" cx="82.9" cy="-74.6788" rx="36.096" ry="18"/>
-<text text-anchor="middle" x="82.9" y="-70.9788" font-family="Helvetica,sans-Serif" font-size="14.00">yellow</text>
+<ellipse fill="none" stroke="white" cx="82.9" cy="-74.6788" rx="36.096" ry="18"/>
+<text text-anchor="middle" x="82.9" y="-70.9788" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">yellow</text>
 </g>
 <!-- tomato&#45;&gt;yellow -->
 <g id="edge2" class="edge"><title>tomato&#45;&gt;yellow</title>
-<path fill="none" stroke="black" d="M45.017,-35.9732C48.1466,-40.884 52.021,-46.2593 56.1,-51.4091"/>
-<polygon fill="black" stroke="black" points="53.5123,-53.7712 62.6005,-59.217 58.892,-49.2924 53.5123,-53.7712"/>
+<path fill="none" stroke="white" stroke-width="2" d="M45.017,-35.9732C48.1466,-40.884 52.021,-46.2593 56.1,-51.4091"/>
+<polygon fill="white" stroke="white" points="53.5123,-53.7712 62.6005,-59.217 58.892,-49.2924 53.5123,-53.7712"/>
 </g>
 <!-- yellow&#45;&gt;tomato -->
 <g id="edge4" class="edge"><title>yellow&#45;&gt;tomato</title>
-<path fill="none" stroke="black" d="M76.3814,-56.7055C73.2518,-51.7947 69.3773,-46.4195 65.2983,-41.2697"/>
-<polygon fill="black" stroke="black" points="67.886,-38.9076 58.7978,-33.4618 62.5064,-43.3864 67.886,-38.9076"/>
+<path fill="none" stroke="white" stroke-width="2" d="M76.3814,-56.7055C73.2518,-51.7947 69.3773,-46.4195 65.2983,-41.2697"/>
+<polygon fill="white" stroke="white" points="67.886,-38.9076 58.7978,-33.4618 62.5064,-43.3864 67.886,-38.9076"/>
 </g>
 </g>
 </svg>
