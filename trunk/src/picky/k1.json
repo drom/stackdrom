@@ -1,0 +1,12 @@
+[                                   // BYTES  CYCLES
+  { pick: { op: 'i16@', imm:   1}}, // 1      1
+  { pick: { op: 'i16@', imm:   1}}, // 1      1
+  { pick: { op: 'i8@' , imm:   1}}, // 1      1
+  { pick: { op: 'i8!' , imm:   1}}, // 1      1
+  { lttr: { op: '+'   , imm: 256}}, // 2      1
+  { pick: { op: '!'   , imm:   2}}, // 1      1
+  { lttr: { op: '+'   , imm:  80}}, // 2      1
+  { pick: { op: '!'   , imm:   2}}, // 1      1
+  { card: { op: 'drop'          }}, // 0.5    1
+  { card: { op: 'drop'          }}, // 0.5    1
+]                            // TOTAL: 11     10
