@@ -80,11 +80,11 @@ pick : {
 	"3 pick c!"     : [{imm: 3, op: 7}, {ds:-1, a:'s3', b:'s0',                     ls:"i8[a]=b"}],
 },
 lttr : {
-	"[2047:0]"         : [{imm: "$1", op: 0}, {ds:1, a:'lit', b:'s0', "(d)":'a+b', d:'s0', lit:'imm'}],
-	"[2047:0] +"       : [{imm: "$1", op: 1}, {ds:1, a:'lit', b:'s0', "(d)":'a+b', d:'s0', lit:'imm'}],
-	"[2047:0] -"       : [{imm: "$1", op: 2}, {ds:1, a:'lit', b:'s0', "(d)":'a-b', d:'s0', lit:'imm'}],
-	"[2047:0] call"    : [{imm: "$1", op: 3}, {ds:1, a:'lit', b:'s0', "(d)":'a-b', d:'s0', lit:'imm'}],
-	"[2047:0] branch"  : [{imm: "$1", op: 4}, {ds:1, a:'lit', b:'s0', "(d)":'a-b', d:'s0', lit:'imm'}],
-	"[2047:0] ?branch" : [{imm: "$1", op: 5}, {ds:1, a:'lit', b:'s0', "(d)":'a-b', d:'s0', lit:'imm'}],
+	"[2047:0]"         : [{imm: "$1", op: 0}, {ds:1, a:'lit', b:'s0',              d:'s0', lit:'imm'}],
+	"[2047:0] +"       : [{imm: "$1", op: 1}, {ds:0, a:'lit', b:'s0', "(d)":'a+b', d:'s0', lit:'imm'}],
+	"[2047:0] -"       : [{imm: "$1", op: 2}, {ds:0, a:'lit', b:'s0',              d:'s0', lit:'imm'}],
+	"[2047:0] call"    : [{imm: "$1", op: 3}, {ds:0, a:'lit', b:'s0',              d:'s0', lit:'imm', goto:'lit'}],
+	"[2047:0] branch"  : [{imm: "$1", op: 4}, {ds:0, a:'lit', b:'s0',              d:'s0', lit:'imm', goto:'lit'}],
+	"[2047:0] ?branch" : [{imm: "$1", op: 5}, {ds:-1,a:'lit', b:'s0', "(d)":'a-b', d:'s0', lit:'imm', goto:'s0?lit:pnext'}],
 }
 }
