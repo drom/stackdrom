@@ -2,10 +2,24 @@ digraph g
 {
 
   /* list of nodes */
+  "cyan";
+  "greenyellow";
+  "orange";
   "tomato";
+  "violet";
   "yellow";
 
   /* list of edges */
+  "cyan" -> "orange";
+  "cyan" -> "tomato";
+  "greenyellow" -> "violet";
+  "greenyellow" -> "yellow";
+  "orange" -> "cyan";
+  "orange" -> "violet";
+  "tomato" -> "cyan";
   "tomato" -> "yellow";
+  "violet" -> "greenyellow";
+  "violet" -> "orange";
+  "yellow" -> "greenyellow";
   "yellow" -> "tomato";
 }

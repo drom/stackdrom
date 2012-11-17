@@ -420,9 +420,21 @@ sub dfg_alap {
 	return \@RET;
 }
 
+sub fisher_yates_shuffle {
+	my $array = shift;
+
+	my $i;
+	for ($i = @$array; --$i; ) {
+		my $j = int rand ($i+1);
+		next if $i == $j;
+		@$array[$i,$j] = @$array[$j,$i];
+	}
+}
+
 sub dfg_mobility {
 	my ($g, $asap, $alap) = @_;
 
+	my @PRE = ();
 	my %mobility = ();
 	my $i = 0;
 	for my $row (@{$asap}) {
@@ -435,11 +447,22 @@ sub dfg_mobility {
 	$i = 0;
 	for my $row (@{$alap}) {
 		for my $v (@{$row}) {
-			$mobility{$v}->[1] = $depth - $i - 2 - $mobility{$v}->[0];
+			my $moblin = $depth - $i - 2 - $mobility{$v}->[0];
+			push @{$PRE[$moblin]}, $v;
 		}
 		$i++;
 	}
-	return \%mobility;
+#	return \@PRE;
+	my @PRE2 = ();
+	for my $row (@PRE) {
+		if (defined $row) {
+			fisher_yates_shuffle ($row);
+			for my $v (@{$row}) {
+				push @PRE2, $v;
+			}
+		}		
+	}
+	return \@PRE2;
 }
 
 sub get_inports {
@@ -464,6 +487,29 @@ sub get_vertices_by_color {
 			push (@V, $v);
 		}
 		my $t = $g->get_vertex_attribute($v, 'type');
+		if ((defined $t) and ($t eq 'ouport')) {
+			push (@V, $v);
+		}
+	}
+	return \@V;
+}
+
+sub get_vertices_by_color_2 {
+	my ($g, $color) = @_;
+
+	my $asap = dfg_asap ($g);
+	my $alap = dfg_alap ($g);
+	my $vs = dfg_mobility ($g, $asap, $alap);
+
+	my @V = ();
+	for my $v (@{$vs}) {
+		my $c = $g->get_vertex_attribute ($v, 'color');
+		if ((defined $c) and ($c eq $color)) {
+			push (@V, $v);
+		}
+	}
+	for my $v ($g->vertices) {
+		my $t = $g->get_vertex_attribute ($v, 'type');
 		if ((defined $t) and ($t eq 'ouport')) {
 			push (@V, $v);
 		}
@@ -518,16 +564,6 @@ sub vertex_destinations {
 		push @{$ret}, $e->[1];
 	}
 	return $ret;
-}
-
-sub fisher_yates_shuffle {
-	my $array = shift;
-	my $i;
-	for ($i = @$array; --$i; ) {
-		my $j = int rand ($i+1);
-		next if $i == $j;
-		@$array[$i,$j] = @$array[$j,$i];
-	}
 }
 
 # number of operands for operation
@@ -622,6 +658,28 @@ sub f_assembly {
 	return $ret;
 }
 
+sub f_type {
+	my ($before, $after) = @_;
+
+	my $xs = 0;
+	for my $i (@{$before}) {
+		if ($i eq 'x') {
+			$xs = 1;
+			last;
+		}
+	}
+	my $zs = 0;
+	for my $i (@{$after}) {
+		if ($i eq 'z') {
+			$zs = 1;
+			last;
+		}
+	}
+	if ($xs) {
+		if ($zs) { return 1; } return 3;
+	}   if ($zs) { return 2; } return 0;
+}
+
 sub read_eu {
 	my $name = shift;
 
@@ -640,7 +698,8 @@ sub read_eu {
 				f_degree       ($before, $after),
 				f_destinations ($before, $after),
 				f_operands     ($before, $after),
-				f_assembly     ($before, $after)
+				f_assembly     ($before, $after),
+				f_type         ($before, $after)
 			];
 		}
 	}
@@ -652,33 +711,36 @@ sub my_dumper {
 	my $row = shift;
 
 	my $ret = '';
+	my @W = qw(35 12 12 2 2 12 12 20 10 10 10);
+	my $i = 0;
 	for my $col (@{$row}) {
 		if (ref $col eq 'ARRAY') {
-			$ret .= sprintf "%25s", join ' ', @{$col};
+			$ret .= sprintf "%*s", $W[$i], join ' ', @{$col};
 		} else {
-			$ret .= sprintf "%2d", $col;
+			$ret .= sprintf "%*d", $W[$i], $col;
 		}
 		$ret .= ' | ';
+		$i++;
 	}
 	$ret .= "\n";
 	return $ret;
 }
 
 sub cfg_asap_new {
-	my $g = shift;
+	my ($g, $heu) = @_;
 
-	my @EU = @{read_eu('eu.txt')};
+	my @EU = @{$heu};
 
 	my $max = 0;
 	my $colors = dfg_colors($g);
 	for my $color (@{$colors}) {
 		my $seen = get_inports($g); # initial set of variables available
-		my @OPS  = @{get_vertices_by_color($g, $color)}; # initial set of operations to schedule
+
+		my @OPS  = @{get_vertices_by_color_2 ($g, $color)}; # initial set of operations to schedule
+
 		my $stack = []; # initial empty evaluation stack
 		my $flag = 0;
 
-		fisher_yates_shuffle (\@OPS);
-		
 		print "*** $color ****\n";
 		my $iii = 0;
 		M: for (0..100) {
@@ -691,46 +753,86 @@ sub cfg_asap_new {
 				}
 				push @PRE, $v;
 			}
-
 			my $instruction = '';
 			
 			EU: for my $eu (@EU) {
-				if ($eu->[3] == 0) { # fetch operands
+				next if ((scalar @{$stack}) < $eu->[3]); # match the minimum number of stack enties
+#print join (" ", @{$eu->[0]}) . " : \n";
+
+				if ($eu->[8] == 2) { # fetch operands
 					next M if (scalar (@PRE) == 0);
 
-					my $v = $PRE[0]; # first in list
-					L2: for my $e ($g->edges_to($v)) { # all data it requires
-						my $efrom = $e->[0];
-						for my $se (@{$stack}) {
-							next L2 if ($$se[0] eq $efrom);
+					for my $v (@PRE) {
+#print join (" ", @{$eu->[0]}) . " : $v\n";
+#					my $v = $PRE[0]; # first in list
+						L2: for my $e ($g->edges_to($v)) { # all data it requires
+							my $efrom = $e->[0];
+							for my $se (@{$stack}) {
+								next L2 if ($$se[0] eq $efrom);
+							}
+							$instruction = "${efrom}@";
+							push (@{$stack}, vertex_destinations ($g, $efrom));
+							print sprintf ("%30s" , $instruction) . dump_stack ($stack) . "\n";
+							$iii++;
+							$eu->[9]++;
+							next M;
 						}
-						$instruction = "${efrom}@";
-						push (@{$stack}, vertex_destinations ($g, $efrom));
-						print sprintf ("%30s" , $instruction) . dump_stack ($stack) . "\n";
-						$iii++;
-						next M;
 					}
 					last M;
 				}
-				next if ((scalar @{$stack}) < $eu->[3]); # match the minimum number of stack enties
-
 				my $top_len = scalar @{$eu->[5]};
 				for (my $i = -$top_len; $i < 0; $i++) { # match the number of destinations
 					my $mask = $eu->[5]->[$i];
 					next if ($mask == 0);
 					if ($mask == 1) {
-						next if (scalar @{$stack->[$i]} == 2);
+						next if (scalar @{$stack->[$i]} == 2); # last item
 					} elsif ($mask == 2) {
-						next if (scalar @{$stack->[$i]}  > 2);
+						next if (scalar @{$stack->[$i]}  > 1); # one or more
 					} else {
-						next if (scalar @{$stack->[$i]}  < 2);
+						next if (scalar @{$stack->[$i]}  < 2); # empty cell
 					}
 					next EU;
+				}
+
+				if ($eu->[4] == 0) { # no operands required
+# new_stack_top
+					my @NEWTOP = (); # new top of the stack
+					for my $i (@{$eu->[7]}) {
+						if ($i == 0) {
+							die "should be no new elements\n";
+#							push @NEWTOP, vertex_destinations ($g, $v); # new entry
+						} else {
+							push @NEWTOP, $stack->[$i]; # old entry
+						}
+					}
+					# clean old stack top
+					splice (@{$stack}, -($eu->[3]));
+					# attach new stack top
+					push (@{$stack}, @NEWTOP);
+# end new_stack_top
+# instruction_name
+					$instruction = join (' ', @{$eu->[0]});
+					# insert operation ID
+#					my $vtype = $g->get_vertex_attribute($v, 'type');
+#					$instruction =~ s/\$/$vtype/;
+#					my @from = $g->edges_to($v);
+#					my $from = $from[0]->[1];
+#					$instruction =~ s/\%/$from/;
+					# patch operation or node name
+#					$seen->{$v} += 1;
+					$iii++;
+					$eu->[9]++;
+					print sprintf ("%30s" , $instruction) . dump_stack ($stack) . "\n";
+# end instruction_name
+					next M;
 				}
 
 				CND: for my $v (@PRE) { # for all candidates
 					next unless ($g->in_degree($v) == $eu->[4]); # match the number of arguments
 
+					if ($eu->[8] == 3) { # store operands
+						next CND unless ($g->get_vertex_attribute ($v, 'type') eq 'ouport');
+					}
 					my @E_TO = $g->edges_to($v); # !!! must be sorted by edge headlabel
 					for (my $i = -$top_len; $i < 0; $i++) { # match operands on the stack
 						my $mask = $eu->[6]->[$i];
@@ -751,6 +853,7 @@ sub cfg_asap_new {
 							$stack = stack_reduce ($stack, $i, $E_TO[1]->[1]);
 						}
 					}
+# new_stack_top
 					my @NEWTOP = (); # new top of the stack
 					for my $i (@{$eu->[7]}) {
 						if ($i == 0) {
@@ -763,15 +866,21 @@ sub cfg_asap_new {
 					splice (@{$stack}, -($eu->[3]));
 					# attach new stack top
 					push (@{$stack}, @NEWTOP);
+# end new_stack_top
+# instruction_name
 					$instruction = join (' ', @{$eu->[0]});
+					# insert operation ID
 					my $vtype = $g->get_vertex_attribute($v, 'type');
 					$instruction =~ s/\$/$vtype/;
-					# insert operation ID
-
+					my @from = $g->edges_to($v);
+					my $from = $from[0]->[1];
+					$instruction =~ s/\%/$from/;
 					# patch operation or node name
 					$seen->{$v} += 1;
 					$iii++;
+					$eu->[9]++;
 					print sprintf ("%30s" , $instruction) . dump_stack ($stack) . "\n";
+# end instruction_name
 					next M;
 				}
 			}
@@ -866,7 +975,7 @@ $w0->write_graph ($g0, 'dot\02.dot');
 
 my $asap = dfg_asap($g0);
 my $alap = dfg_alap($g0);
-#print Dumper ($alap);
+
 my $parallelism = 0;
 for my $row (@{$asap}) {
 	if (scalar (@{$row}) > $parallelism) {
@@ -890,7 +999,7 @@ my @CODE2 = (
 [ qw (im-1,6 im-1,2 im-1,7 im-1,1 im-1,3 im-1,5 im-2,5 im-2,7 im-3,7 im-2,1 im-2,3 im-3,1 im-5,7 im-5,5 im-2,0 im-2,4 im-5,1 im-6,1 im-6,7 im-5,3 im-6,5 im-6,3 im-4,2 im-4,0 im-5,4 im-5,0 im-6,2 im-6,6)],
 );
 
-colorize($g0, \@CODE2, \@COLORS);
+colorize($g0, \@CODE6, \@COLORS);
 $w0->write_graph ($g0, 'dot\03.dot');
 
 
@@ -905,16 +1014,22 @@ $w0->write_graph ($g0, 'dot\04.dot');
 
 my $timer = time();
 my $maxxxx = 0;
-for (0..3) {
-	my $tmax = cfg_asap_new ($g0);
+
+my @EU = @{read_eu('eu.txt')};
+
+for (0..20) {
+	my $tmax = cfg_asap_new ($g0, \@EU);
 	$maxxxx = $tmax if ($tmax > $maxxxx);
 }
+
 print "MAX:$maxxxx\n";
-print "TIME:" .  (time() - $timer);
+print "TIME:" .  (time() - $timer) . "\n";
+
+for my $eu (@EU) { print my_dumper ($eu); }
 
 #print Dumper (dfg_colors($g0));
 
-straighten($g0, \@CODE2, \@COLORS);
+straighten($g0, \@CODE6, \@COLORS);
 $w0->write_graph ($g0, 'dot\05.dot');
 
 straighten_ouports($g0);
