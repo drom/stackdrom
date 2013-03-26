@@ -1,4 +1,4 @@
-#Forth primitive bundling
+#summary Forth primitive bundling
 
 minimalistic set of Forth primitive types. 
 
