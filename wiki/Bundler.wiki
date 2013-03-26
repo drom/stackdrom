@@ -1,0 +1,24 @@
+#Forth primitive bundling
+
+minimalistic set of Forth primitive types. 
+
+||*#* || *op*    || *ps*         || *rs*       || *comment* ||
+|| 0  || lit     || ( -- a )     || || immediate value from the instruction body ||
+|| 1  || branch  || ( a -- )     || ||
+|| 2  || call    || ( a -- )     || ( -- b )   ||
+|| 3  || return  ||              || ( a -- )   ||
+|| 4  || ?branch || ( f a -- )   || ||
+|| 5  || next    || ( a --   )   || ( b -- c ) ||
+|| 6  || alu     || ( a b -- c ) || || +, -, `*`, and, or, xor,... ||
+|| 7  || shift   || ( a -- b )   || || 2`*`, 2/, u2`*`, u2/ not, inverse ||
+|| 8  || @       || ( a -- b )   || ||
+|| 9  || !       || ( a b -- )   || ||
+|| 10 || drop    || ( a -- )     || ||
+|| 11 || dup     || ( a -- a a ) || ||
+|| 12 || over    || ( a b -- a b a ) || ||
+|| 13 || >r      || ( a -- )     || ( -- a ) ||
+|| 14 || r>      || ( -- a )     || ( a -- ) ||
+
+ * How these primitives can be bundled automatically into the same cycle?
+ * All singles, Some duplets, triplets,...
+ * Build the HW decoder that can decode bundles
