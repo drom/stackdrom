@@ -14,10 +14,9 @@ minimalistic set of Forth primitive types.
 || 8  || @       || ( a -- b )   || ||
 || 9  || !       || ( a b -- )   || ||
 || 10 || drop    || ( a -- )     || ||
-|| 11 || dup     || ( a -- a a ) || ||
-|| 12 || over    || ( a b -- a b a ) || ||
-|| 13 || >r      || ( a -- )     || ( -- a ) ||
-|| 14 || r>      || ( -- a )     || ( a -- ) ||
+|| 11 || pick    || ( -- a )     || || *: dup* 0 pick ; *: over* 1 pick ; ||
+|| 12 || >r      || ( a -- )     || ( -- a ) ||
+|| 13 || r>      || ( -- a )     || ( a -- ) ||
 
  * How these primitives can be bundled automatically into the same cycle?
  * All singles, Some duplets, some triplets,...
