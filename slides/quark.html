@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Quark combiner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono&subset=latin,cyrillic,greek' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+	div table {
+		font-family: 'Ubuntu Mono', 'Courier New', monospace;
+	}
+	</style>
+ </head>
+<body>
+ <div class="container">
+  <div class="row">
+   <div class="span12"><h2>Forth Quark combiner</h2></div>
+   <div class="span4">
+    <button class="btn" onclick="drom.render(100)">Report 100 &gt;</button>
+    <button class="btn" onclick="drom.render(1000)">Report 1000 &gt;</button>
+    <form name="form">
+     <legend>Resource limitations</legend>
+     <label class="checkbox"><input name="branch" type="checkbox">Single branch unit.</label>
+     <label class="checkbox"><input name="alu" type="checkbox">Single ALU.</label>
+     <label class="checkbox"><input name="loadstore" type="checkbox">Single Load/Store unit.</label>
+
+     <label class="checkbox">
+      <input name="ps_growth" type="checkbox">Limit PS growth</input>
+     </label>
+
+     <label class="checkbox">
+      <input name="rs_growth" type="checkbox">Limit RS growth</input>
+     </label>
+
+     <legend>Useless sequencies</legend>
+     <label class="checkbox"><input name="dropfear" type="checkbox">Remove (ALU, DUP, OVER,...) DROP.</label>
+     <label class="checkbox"><input name="r2r" type="checkbox">Remove R> >R, >R R></label>
+    </form>
+   </div>
+   <div class="span8">
+    <div class="tabbable">
+    <ul class="nav nav-tabs">
+     <li class="active"><a href="#tab1" data-toggle="tab" id="lab1">1</a></li>
+     <li><a href="#tab2" data-toggle="tab" id="lab2">2</a></li>
+     <li><a href="#tab3" data-toggle="tab" id="lab3">3</a></li>
+     <li><a href="#tab4" data-toggle="tab" id="lab4">4</a></li>
+    </ul>
+    <div class="tab-content">
+     <div class="tab-pane active" id="tab1">
+      <table class="table table-hover">
+       <thead><tr><th>word</th><th>PS</th><th>RS</th></tr></thead>
+       <tbody id="tbody1"></tbody>
+      </table>
+     </div>
+     <div class="tab-pane" id="tab2">
+      <table class="table table-hover">
+       <thead><tr><th>phrase</th><th>PS</th><th>RS</th></tr></thead>
+       <tbody id="tbody2"></tbody>
+     </table>
+     </div>
+     <div class="tab-pane" id="tab3">
+      <table class="table table-hover">
+       <thead><tr><th>phrase</th><th>PS</th><th>RS</th></tr></thead>
+       <tbody id="tbody3"></tbody>
+      </table>
+     </div>
+     <div class="tab-pane" id="tab4">
+      <table class="table table-hover">
+       <thead><tr><th>phrase</th><th>PS</th><th>RS</th></tr></thead>
+       <tbody id="tbody4"></tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <script src="http://code.jquery.com/jquery.js"></script>
+ <script src="bootstrap/js/bootstrap.min.js"></script>
+ <script type="text/javascript">
+	var drom = drom || {};
+	(function () {
+		"use strict";
+		drom.words = [ // branch loadstore alu drop-fear      PS-stack-change RS-stack-change
+			{name:'LIT',      use:[0, 0, 0, 1,    1, 0,    -1, 0]}, // (     -- a )
+			{name:'BRANCH',   use:[1, 0, 0, 1,   -1, 0,     1, 0]}, // (   a --   )
+			{name:'?BRANCH',  use:[1, 0, 0, 1,   -2, 0,     2, 0]}, // ( a b --   )
+			{name:'NEXT',     use:[1, 0, 0, 1,   -1, 0,     1, 0]}, // (   a --   )
+			{name:'DROP',     use:[0, 0, 0, 0,   -1, 0,     1, 0]}, // (   a --   )
+			{name:'>R',       use:[0, 0, 0, 0,   -1, 1,     1,-1]}, // (   a --   |   -- a )
+			{name:'R>',       use:[0, 0, 0, 0,    1,-1,    -1, 1]}, // (     -- a | a --   )
+			{name:'ALU1',     use:[0, 0, 1, 1,    0, 0,     0, 0]}, // (   a -- b )
+			{name:'ALU2',     use:[0, 0, 1, 1,   -1, 0,     1, 0]}, // ( a b -- c )
+			{name:'@',        use:[0, 1, 0, 1,    0, 0,     0, 0]}, // (   a -- b )
+			{name:'!',        use:[0, 1, 0, 0,   -2, 0,     2, 0]}, // ( a b --   )
+			{name:'DUP',      use:[0, 0, 0, 1,    1, 0,     0, 0]}, // (   a -- a a )
+			{name:'PICK',     use:[0, 0, 0, 1,    0, 0,     0, 0]}, // (   a -- b )
+		];
+		function good_alu (arr) {
+			"use strict";
+			if (!document.form.alu.checked) { return 1; }
+			var i, count = 0;
+			for (i = 0; i < arr.length; i++) {
+				count += drom.words[arr[i]].use[2];
+			}
+			if (count > 1) { return 0; }
+			return 1;
+		}
+		function good_loadstore (arr) {
+			"use strict";
+			if (!document.form.loadstore.checked) { return 1; }
+			var i, count = 0;
+			for (i = 0; i < arr.length; i++) {
+				count += drom.words[arr[i]].use[1];
+			}
+			if (count > 1) { return 0; }
+			return 1;
+		}
+		function good_dropfear (arr) {
+			"use strict";
+			if (!document.form.dropfear.checked) { return 1; }
+			var i;
+			for (i = 1; i < arr.length; i++) {
+				if ((drom.words[arr[i]].name === 'DROP') && (drom.words[arr[i-1]].use[3])) { return 0; }
+			}
+			return 1;
+		}
+		function good_r2r (arr) {
+			"use strict";
+			if (!document.form.r2r.checked) { return 1; }
+			var i;
+			for (i = 1; i < arr.length; i++) {
+				if ((drom.words[arr[i]].name === 'R>') && (drom.words[arr[i-1]].name === '>R')) { return 0; }
+				if ((drom.words[arr[i]].name === '>R') && (drom.words[arr[i-1]].name === 'R>')) { return 0; }
+			}
+			return 1;
+		}
+		function run1 () {
+			"use strict";
+			var i, count = 0, node;
+			node = document.getElementById('tbody1');
+			node.innerHTML = '';
+			for (i = 0; i < drom.words.length; i++) {
+				node.innerHTML += ('<tr><td>' + drom.words[i].name + '</td><td></td><td></td></tr>');
+				count += 1;
+			}
+			document.getElementById('lab1').innerHTML = '1 (' + count + ')';
+		};
+		function run2 () {
+			"use strict";
+			var i0, i1, count = 0, node, branch;
+			branch = document.form.branch.checked;
+			node = document.getElementById('tbody2');
+			node.innerHTML = '';
+			for (i0 = 0; i0 < drom.words.length; i0++) {
+				if (!(branch && (drom.words[i0].use[0]))) {
+				for (i1 = 0; i1 < drom.words.length; i1++) {
+					if (good_alu([i0, i1]) && good_loadstore([i0, i1]) && good_dropfear([i0, i1]) && good_r2r([i0, i1])) {
+					node.innerHTML += ('<tr><td>' +
+						drom.words[i0].name + ' ' +
+						drom.words[i1].name + '</td><td></td><td></td></tr>');
+					count += 1;
+					}
+				}}
+			}
+			document.getElementById('lab2').innerHTML = '2 (' + count + ')';
+		};
+		function run3 (reports) {
+			"use strict";
+			var i0, i1, i2, count = 0, node, branch;
+			branch = document.form.branch.checked;
+			node = document.getElementById('tbody3');
+			node.innerHTML = '';
+			for (i0 = 0; i0 < drom.words.length; i0++) {
+				if (!(branch && (drom.words[i0].use[0]))) {
+				for (i1 = 0; i1 < drom.words.length; i1++) {
+					if (!(branch && (drom.words[i1].use[0]))) {
+					for (i2 = 0; i2 < drom.words.length; i2++) {
+						if (good_alu([i0, i1, i2]) && good_loadstore([i0, i1, i2]) && good_dropfear([i0, i1, i2]) && good_r2r([i0, i1, i2])) {
+						if (count < reports) {
+							node.innerHTML += ('<tr><td>' +
+								drom.words[i0].name + ' ' +
+								drom.words[i1].name + ' ' +
+								drom.words[i2].name + '</td><td></td><td></td></tr>');
+						}
+						count += 1;
+						}
+					}}
+				}}
+			}
+			document.getElementById('lab3').innerHTML = '3 (' + count + ')';
+		};
+		function run4 (reports) {
+			"use strict";
+			var i0, i1, i2, i3, count = 0, node, branch;
+			branch = document.form.branch.checked;
+			node = document.getElementById('tbody4');
+			node.innerHTML = '';
+			for (i0 = 0; i0 < drom.words.length; i0++) {
+				if (!(branch && (drom.words[i0].use[0]))) {
+				for (i1 = 0; i1 < drom.words.length; i1++) {
+					if (!(branch && (drom.words[i1].use[0]))) {
+					for (i2 = 0; i2 < drom.words.length; i2++) {
+						if (!(branch && (drom.words[i2].use[0]))) {
+						for (i3 = 0; i3 < drom.words.length; i3++) {
+							if (good_alu([i0, i1, i2, i3]) && good_loadstore([i0, i1, i2, i3]) && good_dropfear([i0, i1, i2, i3]) && good_r2r([i0, i1, i2, i3])) {
+							if (count < reports) {
+							node.innerHTML += ('<tr><td>' +
+								drom.words[i0].name + ' ' +
+								drom.words[i1].name + ' ' +
+								drom.words[i2].name + ' ' +
+								drom.words[i3].name + '</td><td></td><td></td></tr>');
+							}
+							if (count > 50000) {
+								document.getElementById('lab4').innerHTML = '4 (>50000)';
+								return 0;
+							}
+							count += 1;
+							}
+						}}
+					}}
+				}}
+			}
+			document.getElementById('lab4').innerHTML = '4 (' + count + ')';
+		};
+		drom.render = function (reports) {
+			"use strict";
+			var form;
+			run1();
+			run2();
+			run3(reports);
+			run4(reports);
+		};
+	})();
+ </script>
+</body>
+</html>
