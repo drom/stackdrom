@@ -189,60 +189,55 @@
 		}
 		function run1 () {
 			"use strict";
-			var i, count = 0, node;
-			node = document.getElementById('tbody1');
-			node.innerHTML = '';
+			var i, count = 0, ret = '';
 			for (i = 0; i < drom.words.length; i++) {
 				if (good_to_go([i])) {
-					node.innerHTML += print_row([i]);
+					ret += print_row([i]);
 					count += 1;
 				}
 			}
+			document.getElementById('tbody1').innerHTML = ret;
 			document.getElementById('lab1').innerHTML = '1 (' + count + ')';
 		};
 		function run2 () {
 			"use strict";
-			var i0, i1, count = 0, node, branch;
+			var i0, i1, count = 0, branch, ret = '';
 			branch = document.form.branch.checked;
-			node = document.getElementById('tbody2');
-			node.innerHTML = '';
 			for (i0 = 0; i0 < drom.words.length; i0++) {
 				if (!(branch && (drom.words[i0].use[0]))) {
 				for (i1 = 0; i1 < drom.words.length; i1++) {
 					if (good_to_go([i0, i1])) {
-						node.innerHTML += print_row([i0, i1]);
+						ret += print_row([i0, i1]);
 						count += 1;
 					}
 				}}
 			}
+			document.getElementById('tbody2').innerHTML = ret;
 			document.getElementById('lab2').innerHTML = '2 (' + count + ')';
 		};
 		function run3 (reports) {
 			"use strict";
-			var i0, i1, i2, count = 0, node, branch;
+			var i0, i1, i2, count = 0, branch, ret = '';
 			branch = document.form.branch.checked;
-			node = document.getElementById('tbody3');
-			node.innerHTML = '';
 			for (i0 = 0; i0 < drom.words.length; i0++) {
 				if (!(branch && (drom.words[i0].use[0]))) {
 				for (i1 = 0; i1 < drom.words.length; i1++) {
 					if (!(branch && (drom.words[i1].use[0]))) {
 					for (i2 = 0; i2 < drom.words.length; i2++) {
 						if (good_to_go([i0, i1, i2])) {
-							if (count < reports) { node.innerHTML += print_row([i0, i1, i2]); }
+							if (count < reports) { ret += print_row([i0, i1, i2]); }
 							count += 1;
 						}
 					}}
 				}}
 			}
+			document.getElementById('tbody3').innerHTML = ret;
 			document.getElementById('lab3').innerHTML = '3 (' + count + ')';
 		};
 		function run4 (reports) {
 			"use strict";
-			var i0, i1, i2, i3, count = 0, node, branch;
+			var i0, i1, i2, i3, count = 0, branch, ret = '';
 			branch = document.form.branch.checked;
-			node = document.getElementById('tbody4');
-			node.innerHTML = '';
 			for (i0 = 0; i0 < drom.words.length; i0++) {
 				if (!(branch && (drom.words[i0].use[0]))) {
 				for (i1 = 0; i1 < drom.words.length; i1++) {
@@ -251,8 +246,9 @@
 						if (!(branch && (drom.words[i2].use[0]))) {
 						for (i3 = 0; i3 < drom.words.length; i3++) {
 							if (good_to_go([i0, i1, i2, i3])) {
-								if (count < reports) { node.innerHTML += print_row([i0, i1, i2, i3]); }
+								if (count < reports) { ret += print_row([i0, i1, i2, i3]); }
 								if (count > 50000) {
+									document.getElementById('tbody4').innerHTML = ret;
 									document.getElementById('lab4').innerHTML = '4 (>50000)';
 									return 0;
 								}
@@ -262,14 +258,13 @@
 					}}
 				}}
 			}
+			document.getElementById('tbody4').innerHTML = ret;
 			document.getElementById('lab4').innerHTML = '4 (' + count + ')';
 		};
 		function run5 (reports) {
 			"use strict";
-			var i0, i1, i2, i3, i4, count = 0, node, branch;
+			var i0, i1, i2, i3, i4, count = 0, branch, ret = '';
 			branch = document.form.branch.checked;
-			node = document.getElementById('tbody5');
-			node.innerHTML = '';
 			for (i0 = 0; i0 < drom.words.length; i0++) {
 				if (!(branch && (drom.words[i0].use[0]))) {
 				for (i1 = 0; i1 < drom.words.length; i1++) {
@@ -280,10 +275,11 @@
 							if (!(branch && (drom.words[i3].use[0]))) {
 							for (i4 = 0; i4 < drom.words.length; i4++) {
 								if (good_to_go([i0, i1, i2, i3, i4])) {
-									if (count < reports) { node.innerHTML += print_row([i0, i1, i2, i3, i4]); }
+									if (count < reports) { ret += print_row([i0, i1, i2, i3, i4]); }
 									if (count > 50000) {
+										document.getElementById('tbody5').innerHTML = ret;
 										document.getElementById('lab5').innerHTML = '5 (>50000)';
-										return 0;
+										return;
 									}
 									count += 1;
 								}
@@ -292,16 +288,18 @@
 					}}
 				}}
 			}
+			document.getElementById('tbody5').innerHTML = ret;
 			document.getElementById('lab5').innerHTML = '5 (' + count + ')';
 		};
 		drom.render = function (reports) {
 			"use strict";
-			var form;
+			console.time('main');
 			run1();
 			run2();
 			run3(reports);
 			run4(reports);
 			run5(reports);
+			console.timeEnd('main');
 		};
 	})();
  </script>
