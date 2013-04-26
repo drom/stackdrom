@@ -193,8 +193,10 @@
 			node = document.getElementById('tbody1');
 			node.innerHTML = '';
 			for (i = 0; i < drom.words.length; i++) {
-				node.innerHTML += print_row([i]);
-				count += 1;
+				if (good_to_go([i])) {
+					node.innerHTML += print_row([i]);
+					count += 1;
+				}
 			}
 			document.getElementById('lab1').innerHTML = '1 (' + count + ')';
 		};
