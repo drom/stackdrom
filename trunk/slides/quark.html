@@ -18,7 +18,7 @@
    <div class="span12"><h2>Forth Quark combiner</h2></div>
    <div class="span4">
     <button class="btn" onclick="drom.render(100)">Report 100 &gt;</button>
-    <button class="btn" onclick="drom.render(1000)">Report 1000 &gt;</button>
+    <button class="btn" onclick="drom.render(10000)">Report 10000 &gt;</button>
     <form name="form">
      <legend>Resource limitations</legend>
      <label class="checkbox"><input name="branch" type="checkbox">Single branch unit.</label>
@@ -247,9 +247,9 @@
 						for (i3 = 0; i3 < drom.words.length; i3++) {
 							if (good_to_go([i0, i1, i2, i3])) {
 								if (count < reports) { ret += print_row([i0, i1, i2, i3]); }
-								if (count > 50000) {
+								if (count > 1000000) {
 									document.getElementById('tbody4').innerHTML = ret;
-									document.getElementById('lab4').innerHTML = '4 (>50000)';
+									document.getElementById('lab4').innerHTML = '4 (>1M)';
 									return 0;
 								}
 								count += 1;
@@ -276,9 +276,9 @@
 							for (i4 = 0; i4 < drom.words.length; i4++) {
 								if (good_to_go([i0, i1, i2, i3, i4])) {
 									if (count < reports) { ret += print_row([i0, i1, i2, i3, i4]); }
-									if (count > 50000) {
+									if (count > 1000000) {
 										document.getElementById('tbody5').innerHTML = ret;
-										document.getElementById('lab5').innerHTML = '5 (>50000)';
+										document.getElementById('lab5').innerHTML = '5 (>1M)';
 										return;
 									}
 									count += 1;
@@ -304,19 +304,16 @@
 	})();
  </script>
 <script type="text/javascript">
-
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-27923568-1']);
   _gaq.push(['_setDomainName', 'stackdrom.googlecode.com']);
   _gaq.push(['_setAllowLinker', true]);
   _gaq.push(['_trackPageview']);
-
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
 </script>
 </body>
 </html>
