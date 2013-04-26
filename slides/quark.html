@@ -25,10 +25,10 @@
      <label class="checkbox"><input name="alu" type="checkbox">Single ALU.</label>
      <label class="checkbox"><input name="loadstore" type="checkbox">Single Load/Store unit.</label>
 
-     <div>Limit PS push:  <span id='ps_push'>8</span> <input type="range" min="1" max="8" value="8" step="1" onchange="drom.showValue(this.value, 'ps_push')"/></div>
-     <div>Limit PS .pop : <span id='ps_pop'>8</span> <input type="range" min="1" max="8" value="8" step="1" onchange="drom.showValue(this.value, 'ps_pop' )"/></div>
-     <div>Limit RS push:  <span id='rs_push'>8</span> <input type="range" min="1" max="8" value="8" step="1" onchange="drom.showValue(this.value, 'rs_push')"/></div>
-     <div>Limit RS .pop : <span id='rs_pop'>8</span> <input type="range" min="1" max="8" value="8" step="1" onchange="drom.showValue(this.value, 'rs_pop' )"/></div>
+     <div>Limit PS push:  <span id='ps_push'>8</span> <input type="range" min="0" max="8" value="8" step="1" onchange="drom.showValue(this.value, 'ps_push')"/></div>
+     <div>Limit PS .pop : <span id='ps_pop'>8</span> <input type="range" min="0" max="8" value="8" step="1" onchange="drom.showValue(this.value, 'ps_pop' )"/></div>
+     <div>Limit RS push:  <span id='rs_push'>8</span> <input type="range" min="0" max="8" value="8" step="1" onchange="drom.showValue(this.value, 'rs_push')"/></div>
+     <div>Limit RS .pop : <span id='rs_pop'>8</span> <input type="range" min="0" max="8" value="8" step="1" onchange="drom.showValue(this.value, 'rs_pop' )"/></div>
 
      <legend>Useless combinations</legend>
      <label class="checkbox"><input name="dropfear" type="checkbox">Remove (ALU DUP ...) DROP</label>
@@ -42,6 +42,7 @@
      <li><a href="#tab2" data-toggle="tab" id="lab2">2</a></li>
      <li><a href="#tab3" data-toggle="tab" id="lab3">3</a></li>
      <li><a href="#tab4" data-toggle="tab" id="lab4">4</a></li>
+     <li><a href="#tab5" data-toggle="tab" id="lab5">5</a></li>
     </ul>
     <div class="tab-content">
      <div class="tab-pane active" id="tab1">
@@ -66,6 +67,12 @@
       <table class="table table-hover">
        <thead><tr><th>phrase</th><th>PS</th><th>RS</th></tr></thead>
        <tbody id="tbody4"></tbody>
+      </table>
+     </div>
+     <div class="tab-pane" id="tab5">
+      <table class="table table-hover">
+       <thead><tr><th>phrase</th><th>PS</th><th>RS</th></tr></thead>
+       <tbody id="tbody5"></tbody>
       </table>
      </div>
     </div>
@@ -255,6 +262,36 @@
 			}
 			document.getElementById('lab4').innerHTML = '4 (' + count + ')';
 		};
+		function run5 (reports) {
+			"use strict";
+			var i0, i1, i2, i3, i4, count = 0, node, branch;
+			branch = document.form.branch.checked;
+			node = document.getElementById('tbody5');
+			node.innerHTML = '';
+			for (i0 = 0; i0 < drom.words.length; i0++) {
+				if (!(branch && (drom.words[i0].use[0]))) {
+				for (i1 = 0; i1 < drom.words.length; i1++) {
+					if (!(branch && (drom.words[i1].use[0]))) {
+					for (i2 = 0; i2 < drom.words.length; i2++) {
+						if (!(branch && (drom.words[i2].use[0]))) {
+						for (i3 = 0; i3 < drom.words.length; i3++) {
+							if (!(branch && (drom.words[i3].use[0]))) {
+							for (i4 = 0; i4 < drom.words.length; i4++) {
+								if (good_to_go([i0, i1, i2, i3, i4])) {
+									if (count < reports) { node.innerHTML += print_row([i0, i1, i2, i3, i4]); }
+									if (count > 50000) {
+										document.getElementById('lab5').innerHTML = '5 (>50000)';
+										return 0;
+									}
+									count += 1;
+								}
+							}}
+						}}
+					}}
+				}}
+			}
+			document.getElementById('lab5').innerHTML = '5 (' + count + ')';
+		};
 		drom.render = function (reports) {
 			"use strict";
 			var form;
@@ -262,6 +299,7 @@
 			run2();
 			run3(reports);
 			run4(reports);
+			run5(reports);
 		};
 	})();
  </script>
