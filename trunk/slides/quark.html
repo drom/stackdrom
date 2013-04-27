@@ -23,10 +23,10 @@
     <form name="form">
      <legend>Resource limitations</legend>
      <label class="checkbox"><input name="branch" type="checkbox">Single branch in last slot</label>
-     <label class="checkbox"><input name="alu" type="checkbox">Single ALU</label>
      <label class="checkbox"><input name="loadstore" type="checkbox">Single Load/Store unit</label>
 
      <div><input type="range" min="0" max="6" value="6" step="1" onchange="drom.showValue(this.value, 'lit_slots')"/> : <span id='lit_slots'>6</span> LIT slots</div>
+     <div><input type="range" min="0" max="6" value="6" step="1" onchange="drom.showValue(this.value, 'alu')"/> : <span id='alu'>6</span> ALUs</div>
      <div><input type="range" min="0" max="6" value="6" step="1" onchange="drom.showValue(this.value, 'ps_push')"/> : <span id='ps_push'>6</span> PS push limit</div>
      <div><input type="range" min="0" max="6" value="6" step="1" onchange="drom.showValue(this.value, 'ps_pop' )"/> : <span id='ps_pop'>6</span> PS pop limit</div>
      <div><input type="range" min="0" max="6" value="6" step="1" onchange="drom.showValue(this.value, 'rs_push')"/> : <span id='rs_push'>6</span> RS push limit</div>
@@ -89,19 +89,19 @@
 	(function () {
 		"use strict";
 		drom.words = [ // branch(0) loadstore(1) alu(2) drop-fear(3) lit_slot(4)    PS-stack-change(5) RS-stack-change(6)
-			{name:'LIT',         use:[0, 0, 0, 1, 1,   1, 0,    -1, 0]}, // (          -- x )
 			{name:'BRANCH',      use:[1, 0, 0, 1, 0,  -1, 0,     1, 0]}, // (     addr --   )
 			{name:'?BRANCH',     use:[1, 0, 0, 1, 0,  -1, 0,     2, 0]}, // (   x addr -- x )
 			{name:'NEXT',        use:[1, 0, 0, 1, 0,  -1, 0,     1, 0]}, // (     addr --   | x -- z )
-			{name:'DROP',        use:[0, 0, 0, 0, 0,  -1, 0,     1, 0]}, // (        x --   )
-			{name:'>R',          use:[0, 0, 0, 0, 0,  -1, 1,     1,-1]}, // (        x --   |   -- x )
-			{name:'R>',          use:[0, 0, 0, 0, 0,   1,-1,    -1, 1]}, // (          -- x | x --   )
+			{name:'LIT',         use:[0, 0, 0, 1, 1,   1, 0,    -1, 0]}, // (          -- x )
 			{name:'ALU1',        use:[0, 0, 1, 1, 0,   0, 0,     0, 0]}, // (        x -- z )
 			{name:'ALU2',        use:[0, 0, 1, 1, 0,  -1, 0,     1, 0]}, // (      x y -- z )
 			{name:'@',           use:[0, 1, 0, 1, 0,   0, 0,     0, 0]}, // (     addr -- val )
 			{name:'OVER_SWAP_!', use:[0, 1, 0, 0, 0,  -1, 0,     2, 0]}, // ( val addr -- val )
+			{name:'>R',          use:[0, 0, 0, 0, 0,  -1, 1,     1,-1]}, // (        x --   |   -- x )
+			{name:'R>',          use:[0, 0, 0, 0, 0,   1,-1,    -1, 1]}, // (          -- x | x --   )
 			{name:'DUP',         use:[0, 0, 0, 1, 0,   1, 0,     0, 0]}, // (        x -- x x )
 			{name:'OVER',        use:[0, 0, 0, 1, 0,   1, 0,     0, 0]}, // (      x y -- x y x )
+			{name:'DROP',        use:[0, 0, 0, 0, 0,  -1, 0,     1, 0]}, // (        x --   )
 		];
 		drom.showValue = function (newValue, where) { document.getElementById(where).innerHTML = newValue; }
 		function good_loadstore (arr) {
@@ -116,12 +116,11 @@
 		}
 		function good_alu (arr) {
 			"use strict";
-			if (!document.form.alu.checked) { return 1; }
 			var i, count = 0;
 			for (i = 0; i < arr.length; i++) {
-				count += drom.words[arr[i]].use[2]; // alu
+				count += drom.words[arr[i]].use[2]; // ALUs
 			}
-			if (count > 1) { return 0; }
+			if (count > Number(document.getElementById('alu').innerHTML)) { return 0; }
 			return 1;
 		}
 		function good_dropfear (arr) {
