@@ -11,6 +11,12 @@
 | 5 | XOR
 | 6 | OR
 | 7 | AND
+| 8 | MUL
+| 9 | MULU
+| A | DIV
+| B | DIVU
+| C | REM
+| D | REMU
 
 
 ```forth
